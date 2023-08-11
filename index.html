@@ -128,3 +128,157 @@
                 </button>
             </div>
         </footer>
+        <div id="addMenuWrapper" class="menuWrapper">
+            <form id="addMenu" class="bookEntryMenu">
+                <p class="menuTitle">Agregar libro</p>
+                <div class="menuInputContainer">
+                    <label for="addMenuTittleInputBar" class="menuInputTitle">Titulo</label>
+                    <div class="menuInputWrapper">
+                        <input
+                            required
+                            type="text"
+                            class="menuInputBar"
+                            id="addMenuTittleInputBar"
+                            minlength="1"
+                            pattern="^\S+$|^\S+( \S+)*$"
+                        />
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Ingrese al menos una palabra</p>
+                    </div>
+                </div>
+                <div class="menuInputContainer">
+                    <label for="addMenuAuthorInputBar" class="menuInputTitle">Autor</label>
+                    <div class="menuInputWrapper">
+                        <input
+                            required
+                            type="text"
+                            class="menuInputBar"
+                            id="addMenuAuthorInputBar"
+                            minlength="1"
+                            pattern="^\S+$|^\S+( \S+)*$"
+                        />
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Ingrese al menos una palabra</p>
+                    </div>
+                </div>
+                <div class="menuInputContainer">
+                    <label for="addMenuPageNumberInputBar" class="menuInputTitle">Números de página</label>
+                    <div class="menuInputWrapper">
+                        <input required type="number" class="menuInputBar" id="addMenuPageNumberInputBar" min="1" />
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Ingrese un número</p>
+                    </div>
+                </div>
+                <div class="menuInputContainer menuBookStateContainer">
+                    <label for="addMenuBookState" class="menuInputTitle">Estado</label>
+                    <div class="menuInputWrapper">
+                        <input
+                            required
+                            type="text"
+                            class="menuInputBar"
+                            id="addMenuBookState"
+                            pattern="^wantToRead$|^read$|^reading$"
+                        />
+                        <div data-value="" class="bookStateDropdownContainer">
+                            <div class="dropdownBaseContainer">
+                                <p class="optionText">Seleccionar</p>
+                            </div>
+                            <div class="stateOptionContainer">
+                                <div data-value="wantToRead" class="stateOption">Quiero leer</div>
+                                <div data-value="read" class="stateOption">Leído</div>
+                                <div data-value="reading" class="stateOption">Leyendo</div>
+                            </div>
+                        </div>
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Seleccione una opción</p>
+                    </div>
+                </div>
+                <div class="menuButtonContainer">
+                    <button type="button" class="cancelAcceptButton cancelButton">Cancelar</button
+                    ><button type="submit" class="cancelAcceptButton acceptButton">Aceptar</button>
+                </div>
+            </form>
+        </div>
+        <div id="editMenuWrapper" class="menuWrapper">
+            <form id="editMenu" class="bookEntryMenu">
+                <p class="menuTitle">Editar libro</p>
+                <div class="menuDeleteContainer">
+                    <button type="button" class="deleteButton">Eliminar</button>
+                </div>
+                <div class="menuInputContainer">
+                    <label for="editMenuTittleInputBar" class="menuInputTitle">Titulo</label>
+                    <div class="menuInputWrapper">
+                        <input
+                            required
+                            type="text"
+                            class="menuInputBar"
+                            id="editMenuTittleInputBar"
+                            minlength="1"
+                            pattern="^\S+$|^\S+( \S+)*$"
+                        />
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Ingrese al menos una palabra</p>
+                    </div>
+                </div>
+                <div class="menuInputContainer">
+                    <label for="editMenuAuthorInputBar" class="menuInputTitle">Autor</label>
+                    <div class="menuInputWrapper">
+                        <input
+                            required
+                            type="text"
+                            class="menuInputBar"
+                            id="editMenuAuthorInputBar"
+                            minlength="1"
+                            pattern="^\S+$|^\S+( \S+)*$"
+                        />
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Ingrese al menos una palabra</p>
+                    </div>
+                </div>
+                <div class="menuInputContainer">
+                    <label for="editMenuPageNumberInputBar" class="menuInputTitle">Números de página</label>
+                    <div class="menuInputWrapper">
+                        <input required type="number" class="menuInputBar" id="editMenuPageNumberInputBar" min="1" />
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Ingrese un número</p>
+                    </div>
+                </div>
+                <div class="menuInputContainer menuBookStateContainer">
+                    <label for="editMenuBookState" class="menuInputTitle">Estado</label>
+                    <div class="menuInputWrapper">
+                        <input
+                            required
+                            type="text"
+                            class="menuInputBar"
+                            id="editMenuBookState"
+                            pattern="^wantToRead$|^read$|^reading$"
+                        />
+                        <div data-value="" class="bookStateDropdownContainer">
+                            <div class="dropdownBaseContainer">
+                                <p class="optionText">Seleccionar</p>
+                            </div>
+                            <div class="stateOptionContainer">
+                                <div data-value="wantToRead" class="stateOption">Quiero leer</div>
+                                <div data-value="read" class="stateOption">Leído</div>
+                                <div data-value="reading" class="stateOption">Leyendo</div>
+                            </div>
+                        </div>
+                        <span class="menuInputIndicator"></span>
+                        <p class="menuIndication">Seleccione una opción</p>
+                    </div>
+                </div>
+                <div class="menuButtonContainer">
+                    <button type="button" class="cancelAcceptButton cancelButton">Cancelar</button
+                    ><button type="submit" class="cancelAcceptButton acceptButton">Aceptar</button>
+                </div>
+            </form>
+        </div>
+        <div id="deleteWrapper" class="menuWrapper">
+            <div class="deleteMenu">
+                <p class="deleteText">¿Desea eliminar este libro?</p>
+                <button type="button" class="cancelAcceptButton cancelButton">Cancelar</button
+                ><button type="button" class="cancelAcceptButton acceptButton">Aceptar</button>
+            </div>
+        </div>
+    </body>
+</html>
