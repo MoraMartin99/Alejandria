@@ -33,3 +33,205 @@
 }
 /* -------------------------------------------------------------------------------------------------------------- */
 
+/* Estilos globales */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+html {
+    /* Colores */
+    /* -------------------------------------------------------- */
+    --colorOverlay1: rgba(0, 0, 0, 0.616);
+    --colorBase1: #c19078;
+    --colorBase2: #d6af9c;
+    --colorBase3: #eecdba;
+    --colorBase4: #a37761;
+    --colorBase5: #ffedde;
+    --colorPrimario1: #28150d;
+    --colorPrimario2: #462718;
+    --colorPrimario3: #562c1a;
+    --colorPrimario4: #753c23;
+    --colorAcento1: #96fe69;
+    --colorAcento2: #68ffd5;
+    --colorAcento3: #f6fe68;
+    --colorAcento4: #feb269;
+    --colorInvalid1: #9e0000;
+    --colorInvalid2: #ffcccc;
+    --colorValid1: #029e00;
+    --colorValid2: #cdffcc;
+
+    /* -------------------------------------------------------- */
+
+    /* Size */
+    /* -------------------------------------------------------- */
+    --homeIconSize: calc(40em / 20);
+    --indicatorContainerWidth: calc(255em / 13);
+    --indicatorContainerBorderWidth: calc(1em / 13);
+    --searchBarWidth: clamp(200px, 46.428571428571445px + 47.99107142857142vw, 415px);
+    --menuButtonSize: clamp(1.5625rem, 0.7495535714285715rem + 4.064732142857143vw, 2.700625rem);
+    --searchBarBorderWidth: clamp(1px, 0.4796499999999999px + 0.16260937500000003vw, 1.72849px);
+    --bookCardBaseWidth: clamp(17.5rem, 15.089285714285715rem + 12.053571428571427vw, 20.875rem);
+    --footerGithubIconSize: calc(1em * (25 / 18));
+    --filterContainerWidth: calc(1em * (140 / 14));
+    --filterContainerHeight: calc(1em * (19.35 / 14));
+    --filterCheckboxSize: calc(1em * (12 / 14));
+    --filterCheckboxBorderWidth: calc(1em * (1 / 14));
+    --filterCheckboxBGSize: calc(1em * (10 / 14));
+    --cancelAcceptButtonWidth: calc(1em * (60 / 14));
+    --cancelAcceptButtonHeight: calc(1em * (25 / 14));
+    --cancelAcceptButtonBorderWidth: calc(1em * (1 / 14));
+    --filterMenuBorderWidth: calc(1em * (1 / 14));
+    --menuInputContainerHeight: calc(1em * (66 / 15));
+    --menuInputBarWidth: calc(1em * (220 / 14));
+    --menuInputBarHeight: calc(1em * (25 / 14));
+    --menuInputBarBorderWidth: calc(1em * (1 / 14));
+    --menuInputIconSize: calc(1em * (20 / 15));
+    --menuIndicationIconSize: 1em;
+    --dropdownBaseContainerWidth: calc(1em * (105 / 14));
+    --dropdownBaseContainerHeight: calc(1em * (19.35 / 14));
+    --dropdownBaseContainerArrowIcon: calc(1em * (16 / 14));
+    --stateOptionIconSize: calc(1em * (12 / 14));
+    --bookStateDropdownContainerBorderWidth: calc(1em * (1 / 14));
+    --bookEntryMenuBorderWidth: calc(1em * (1 / 15));
+    --menuDeleteContainerIconSize: calc(1em * (14 / 15));
+    --deleteButtonUnderlineWidth: 100%;
+    --deleteButtonUnderlineHeight: calc(1em * (1 / 15));
+    --deleteMenuBorderWidth: calc(1em * (1 / 15));
+    --searchDeleteIconSize: calc(var(--menuButtonSize) * 0.5);
+
+    /* -------------------------------------------------------- */
+
+    /* font size */
+    /* -------------------------------------------------------- */
+
+    --homeTitleFontSize: clamp(1.25rem, 0.5040178571428572rem + 3.729910714285714vw, 2.294375rem);
+    --indicatorStatFontSize: clamp(0.8125rem, 0.3276785714285715rem + 2.4241071428571423vw, 1.49125rem);
+    --searchBarFontSize: clamp(0.875rem, 0.4196428571428572rem + 2.276785714285714vw, 1.5125rem);
+    --githubTitleFontSize: clamp(1.125rem, 0.4536160714285714rem + 3.356919642857143vw, 2.0649375rem);
+    --filterMenuFontSize: clamp(0.875rem, 0.4955357142857143rem + 1.8973214285714284vw, 1.40625rem);
+    --bookEntryMenuFontSize: clamp(0.9375rem, 0.5308035714285715rem + 2.033482142857143vw, 1.506875rem);
+    --menuTitleFontSize: calc(1em * (16 / 15));
+    --menuInputBarFontSize: calc(1em * (14 / 15));
+    --menuIndicationFontSize: calc(1em * (12 / 15));
+    --stateOptionFontSize: calc(1em * (14 / 15));
+    --deleteMenuFontSize: var(--bookEntryMenuFontSize);
+
+    /* -------------------------------------------------------- */
+
+    /* Paddings */
+    /* -------------------------------------------------------- */
+    --homepaddingTop: clamp(0.4375rem, 0.1473214285714286rem + 1.450892857142857vw, 0.84375rem);
+    --fieldContainerInLinePadding: calc(3em / 13);
+    --statContainerPaddingBlock: calc(2.5em / 13);
+    --searchBarLeftPadding: clamp(0.6875rem, 0.2723214285714286rem + 2.075892857142857vw, 1.26875rem);
+    --mainInLinePadding: clamp(20px, 5.714285714285715px + 4.4642857142857135vw, 40px);
+    --mainBlockPadding: var(--mainInLinePadding);
+    --bookCardInLinePadding: calc(100% * (12 / 280));
+    --bookCardBlockPadding: calc(100% * (6 / 280));
+    --footerPaddingBlock: calc(1em * (12.5 / 18));
+    --filterContainerPaddingLeft: calc(1em * (10 / 14));
+    --filterButtonContainerPaddingBlock: calc(1em * (5 / 14));
+    --bookEntryMenuPaddingBlock: calc(1em * (10.52 / 15));
+    --bookEntryMenuPaddingInLine: calc(1em * (30 / 15));
+    --menuTitlePaddingBottom: 1em;
+    --menuInputTitlePaddingLeft: calc(1em * (10 / 15));
+    --menuInputBarPaddingLeft: calc(1em * (11 / 14));
+    --dropdownBaseContainerPaddingInLine: calc(1em * (5 / 14));
+    --deleteMenuPaddingBlock: calc(1em * (20 / 15));
+    --deleteMenuPaddingInLine: calc(1em * (22.5 / 15));
+    --searchBarRightPadding: calc(var(--searchBarLeftPadding) + var(--searchDeleteIconSize));
+
+    /* -------------------------------------------------------- */
+
+    /* gap */
+    /* -------------------------------------------------------- */
+
+    --homeColumnGap: calc(10em / 20);
+    --headerRowGap: clamp(0.4375rem, 0.1473214285714286rem + 1.450892857142857vw, 0.84375rem);
+    --buttonAreaColumnGap: clamp(9px, 3.571428571428571px + 1.6964285714285716vw, 16.6px);
+    --mainGap: 20px;
+    --bookCardColumnGap: calc(100% * (10 / 280));
+    --footerGithubColumnGap: calc(1em * (9 / 18));
+    --filterContainerColumnGap: calc(1em * (5 / 14));
+    --filterButtonContainerColumnGap: calc(1em * (6.67 / 14));
+    --bookEntryMenuRowGap: calc(1em * (10 / 15));
+    --bookEntryMenuColumnGap: 0px;
+    --menuInputContainerRowGap: calc(1em * (5 / 15));
+    --menuIndicationColumnGap: calc(1em * (5 / 15));
+    --dropdownBaseContainerColumnGap: calc(1em * (5 / 15));
+    --stateOptionColumnGap: calc(1em * (5 / 14));
+    --menuButtonContainerColumnGap: calc(1em * (10 / 14));
+    --menuDeleteContainerColumnGap: calc(1em * (2 / 15));
+    --deleteButtonRowGap: calc(1em * (1.5 / 15));
+    --deleteMenuColumnGap: calc(1em * (10 / 15));
+
+    /* -------------------------------------------------------- */
+
+    /* position */
+    /* -------------------------------------------------------- */
+    --homeIconTop: calc((100% - var(--homeIconSize)) / 2);
+    --homeIconHorizontalOffset: calc((var(--homeIconSize) + var(--homeColumnGap)) * -1);
+    --indicatorContainerSeparatorHorizontalOffset: calc(var(--indicatorContainerBorderWidth) * -0.5);
+    --footerGithubIconTop: calc((100% - var(--footerGithubIconSize)) / 2);
+    --footerGithubIconLeft: calc((var(--footerGithubIconSize) + var(--footerGithubColumnGap)) * -1);
+    --filterMenuTop: calc(100% + var(--headerRowGap));
+    --filterMenuRight: 0px;
+    --menuInputIndicatorRight: calc(
+        (-1 * var(--menuInputIconSize)) + (var(--bookEntryMenuPaddingInLine) - var(--menuInputIconSize)) / -2
+    );
+    --menuInputIndicatorTop: calc(((1em * (25 / 15)) - var(--menuInputIconSize)) / 2);
+    --menuDeleteContainerTop: var(--bookEntryMenuPaddingBlock);
+    --menuDeleteContainerRight: var(--menuDeleteContainerTop);
+    --searchDeleteIconTop: 50%;
+    --searchDeleteIconLeft: calc(
+        var(--searchBarWidth) - var(--searchDeleteIconSize) - (var(--searchBarLeftPadding) / 2)
+    );
+
+    /* -------------------------------------------------------- */
+
+    /* radius */
+    /* -------------------------------------------------------- */
+
+    --indicatorContainerBorderRadius: calc(3em / 13);
+    --searchBarBorderRadius: clamp(10px, 4.8px + 1.625vw, 17.28px);
+    --bookCardBorderRadiusHorizontal: calc(100% * (10 / 280));
+    --bookCardBorderRadiusVertical: calc(100% * (10 / 140));
+    --cancelAcceptButtonBorderRadius: calc(1em * (5 / 14));
+    --filterMenuBorderRadius: calc(1em * (10 / 14));
+    --menuInputBarBorderRadius: calc(1em * (10 / 14));
+    --bookEntryMenuBorderRadius: calc(1em * (10 / 15));
+    --deleteMenuBorderRadius: calc(1em * (10 / 15));
+
+    /* -------------------------------------------------------- */
+
+    font-size: 100%;
+}
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 0rem;
+    font-family: archivoNarrow, Arial, Verdana, Tahoma, "Trebuchet MS";
+    text-decoration: none;
+    border-style: none;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--colorBase1);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content 1fr max-content;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+    position: relative;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
