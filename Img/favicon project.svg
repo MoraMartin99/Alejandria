@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="60"
+   height="60"
+   viewBox="0 0 15.874999 15.875"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="favicon project.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="3.9838945"
+     inkscape:cx="-34.639472"
+     inkscape:cy="41.040244"
+     inkscape:window-width="1366"
+     inkscape:window-height="698"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-3.9053012,-19.424889)">
+    <g
+       id="g988"
+       transform="translate(21.461291,0.65745749)">
+      <circle
+         style="fill:#a37761;fill-opacity:1;stroke-width:1.10308"
+         id="path241"
+         cx="-9.6184902"
+         cy="26.704931"
+         r="7.9374995" />
+      <g
+         id="g4345"
+         transform="matrix(0.50357256,0,0,0.50357256,65.778695,8.2386879)">
+        <g
+           id="g1645"
+           inkscape:label="libro"
+           transform="translate(-6.5430659,14.661127)">
+          <path
+             id="rect165"
+             style="fill:#ffb768;fill-opacity:1;stroke-width:0.258261"
+             inkscape:label="cubierta"
+             d="m -151.31789,26.188065 v 3.96875 h 13.22916 0.66146 v -0.661458 h -0.66146 v -2.645834 h 0.66146 v -0.661458 h -0.66146 z" />
+          <rect
+             style="fill:#ffffff;stroke-width:0.200049"
+             id="rect221"
+             width="11.90625"
+             height="2.6458333"
+             x="-149.99498"
+             y="26.849524"
+             inkscape:label="paginas" />
+        </g>
+        <g
+           id="g2141"
+           inkscape:label="libro"
+           transform="translate(-5.4847325,10.779695)">
+          <path
+             id="path2137"
+             style="fill:#68ffd5;fill-opacity:1;stroke-width:0.258261"
+             inkscape:label="cubierta"
+             d="m -151.31789,26.188065 v 3.96875 h 13.22916 0.66146 v -0.661458 h -0.66146 v -2.645834 h 0.66146 v -0.661458 h -0.66146 z" />
+          <rect
+             style="fill:#ffffff;stroke-width:0.200049"
+             id="rect2139"
+             width="11.90625"
+             height="2.6458333"
+             x="-149.99498"
+             y="26.849524"
+             inkscape:label="paginas" />
+        </g>
+        <g
+           id="g2873"
+           inkscape:label="libro"
+           transform="translate(-7.6013993,6.810945)">
+          <path
+             id="path2869"
+             style="fill:#96ff68;fill-opacity:1;stroke-width:0.258261"
+             inkscape:label="cubierta"
+             d="m -151.31789,26.188065 v 3.96875 h 13.22916 0.66146 v -0.661458 h -0.66146 v -2.645834 h 0.66146 v -0.661458 h -0.66146 z" />
+          <rect
+             style="fill:#ffffff;stroke-width:0.200049"
+             id="rect2871"
+             width="11.90625"
+             height="2.6458333"
+             x="-149.99498"
+             y="26.849524"
+             inkscape:label="paginas" />
+        </g>
+        <g
+           id="g3605"
+           inkscape:label="libro"
+           transform="rotate(2.1038364,-216.44691,-56.875554)">
+          <path
+             id="path3601"
+             style="fill:#f7fe69;fill-opacity:1;stroke-width:0.258261"
+             inkscape:label="cubierta"
+             d="m -151.31789,26.188065 v 3.96875 h 13.22916 0.66146 v -0.661458 h -0.66146 v -2.645834 h 0.66146 v -0.661458 h -0.66146 z" />
+          <rect
+             style="fill:#ffffff;stroke-width:0.200049"
+             id="rect3603"
+             width="11.90625"
+             height="2.6458333"
+             x="-149.99498"
+             y="26.849524"
+             inkscape:label="paginas" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
