@@ -235,3 +235,221 @@ button {
 
 /* -------------------------------------------------------------------------------------------------------------- */
 
+/* header */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+header {
+    font-size: var(--homeTitleFontSize);
+    padding-block: var(--homepaddingTop);
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--homeIconSize) repeat(2, max-content);
+    grid-template-areas:
+        "home"
+        "indicator"
+        "buttons";
+    justify-items: center;
+    align-items: center;
+    row-gap: var(--headerRowGap);
+    position: relative;
+}
+
+#home {
+    grid-area: home;
+    font-size: inherit;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#home::before {
+    display: block;
+    content: "";
+    font-size: inherit;
+    width: var(--homeIconSize);
+    height: var(--homeIconSize);
+    background-image: url("./Img/Logo.svg");
+    background-size: 100%;
+    position: absolute;
+    top: var(--homeIconTop);
+    left: var(--homeIconHorizontalOffset);
+}
+
+#homeTitle {
+    font-size: inherit;
+    color: var(--colorPrimario1);
+    font-weight: 500;
+}
+
+#indicatorContainer {
+    border: var(--indicatorContainerBorderWidth) solid var(--colorPrimario1);
+    border-radius: var(--indicatorContainerBorderRadius);
+    min-width: var(--indicatorContainerWidth);
+    font-size: var(--indicatorStatFontSize);
+    grid-area: indicator;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "read reading wantToRead";
+    align-content: center;
+    overflow: hidden;
+}
+
+.statContainer {
+    font-size: inherit;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "field value";
+    position: relative;
+}
+
+.readContainer {
+    grid-area: read;
+}
+
+.readContainer::after {
+    font-size: inherit;
+    content: "";
+    position: absolute;
+    border: var(--indicatorContainerBorderWidth) solid var(--colorPrimario1);
+    height: 100%;
+    right: var(--indicatorContainerSeparatorHorizontalOffset);
+}
+
+.readingContainer {
+    grid-area: reading;
+}
+
+.readingContainer::after {
+    font-size: inherit;
+    content: "";
+    position: absolute;
+    border: var(--indicatorContainerBorderWidth) solid var(--colorPrimario1);
+    height: 100%;
+    right: var(--indicatorContainerSeparatorHorizontalOffset);
+}
+
+.wantToReadContainer {
+    grid-area: wantToRead;
+}
+
+.fieldContainer {
+    padding-block: var(--statContainerPaddingBlock);
+    grid-area: field;
+    font-size: inherit;
+    padding-inline: var(--fieldContainerInLinePadding);
+    background-color: var(--colorBase2);
+}
+
+.fieldText {
+    line-height: 1;
+    font-size: inherit;
+    font-weight: 500;
+    color: var(--colorPrimario2);
+}
+
+.valueContainer {
+    padding-block: var(--statContainerPaddingBlock);
+    grid-area: value;
+    font-size: inherit;
+    padding-inline: var(--fieldContainerInLinePadding);
+    display: flex;
+    justify-content: center;
+}
+
+.readContainer .valueContainer {
+    background-color: var(--colorAcento1);
+}
+
+.readingContainer .valueContainer {
+    background-color: var(--colorAcento2);
+}
+
+.wantToReadContainer .valueContainer {
+    background-color: var(--colorAcento3);
+}
+
+.valueText {
+    line-height: 1;
+    font-size: inherit;
+    font-weight: 400;
+    color: var(--colorPrimario2);
+}
+
+.buttonArea {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    grid-template-rows: max-content;
+    grid-template-areas: "search filter add";
+    column-gap: var(--buttonAreaColumnGap);
+}
+
+.searchContainer {
+    grid-area: search;
+    display: flex;
+    column-gap: var(--buttonAreaColumnGap);
+    position: relative;
+}
+
+.searchDeleteIcon {
+    display: none;
+}
+
+.searchDeleteIcon.activated {
+    font-size: var(--searchBarFontSize);
+    position: absolute;
+    display: block;
+    width: var(--searchDeleteIconSize);
+    height: var(--searchDeleteIconSize);
+    background-image: url("./Img/deleteText.svg");
+    background-size: 100%;
+    top: var(--searchDeleteIconTop);
+    left: var(--searchDeleteIconLeft);
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.searchBar {
+    padding-inline: var(--searchBarLeftPadding) var(--searchBarRightPadding);
+    display: flex;
+    align-items: center;
+    font-size: var(--searchBarFontSize);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--colorPrimario3);
+    width: var(--searchBarWidth);
+    height: var(--menuButtonSize);
+    border-radius: var(--searchBarBorderRadius);
+    border: var(--searchBarBorderWidth) solid var(--colorPrimario1);
+}
+
+.menuButton {
+    width: var(--menuButtonSize);
+    height: var(--menuButtonSize);
+    background-color: transparent;
+}
+
+.searchButton {
+    background-image: url("./Img/search.svg");
+    background-size: 100%;
+}
+
+.addButton {
+    grid-area: add;
+    background-image: url("./Img/add.svg");
+    background-size: 100%;
+}
+
+.filterButtonWrapper {
+    grid-area: filter;
+    position: relative;
+}
+
+.filterButton {
+    background-image: url("./Img/filter.svg");
+    background-size: 100%;
+}
+/* -------------------------------------------------------------------------------------------------------------- */
+
