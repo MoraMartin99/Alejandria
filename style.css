@@ -1128,3 +1128,121 @@ input::-webkit-inner-spin-button {
     display: none;
 }
 
+/* Breakpoint 768px = 48em */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 48em) {
+    /* Estilos globales */
+    /* ---------------------------------------------------- */
+
+    html {
+        /* Size */
+        /* ------------------------------------------------ */
+
+        --githubHeaderIconSize: clamp(50px, -7.450000000000017px + 7.480468750000002vw, 69.15px);
+        --searchBarWidth: clamp(415px, -61.83500000000015px + 62.08789062500002vw, 573.945px);
+        --menuButtonSize: clamp(2.70104375rem, -0.4024555187499992rem + 6.465623476562499vw, 3.73554350625rem);
+        --searchBarBorderWidth: clamp(1.728px, -0.2574719999999999px + 0.258525vw, 2.389824px);
+
+        /* ------------------------------------------------ */
+
+        /* Font Size */
+        /* ------------------------------------------------ */
+
+        --homeTitleFontSize: clamp(2.294375rem, -0.3418618750000002rem + 5.492160156250001vw, 3.173120625rem);
+        --indicatorStatFontSize: clamp(1.49125rem, -0.22219624999999965rem + 3.569679687499999vw, 2.06239875rem);
+        --searchBarFontSize: clamp(1.5125rem, -0.22536250000000058rem + 3.620546875000001vw, 2.0917875rem);
+        --bookEntryMenuFontSize: clamp(1.339375rem, 2.009375rem + -1.046875vw, 1.506875rem);
+        --filterMenuFontSize: clamp(1.25rem, 1.875rem + -0.9765625vw, 1.40625rem);
+
+        /* ------------------------------------------------ */
+
+        /* Position */
+        /* ------------------------------------------------ */
+
+        --githubHeaderIconTop: clamp(20px, -2.9800000000000004px + 2.9921875vw, 27.66px);
+        --githubHeaderIconRight: clamp(30px, -4.470000000000006px + 4.488281250000001vw, 41.49px);
+        --filterMenuTop: initial;
+        --filterMenuBottom: calc(100% + var(--headerRowGap) + var(--footerPaddingBlock));
+        --filterMenuRight: 50%;
+        /* ------------------------------------------------ */
+
+        /* padding */
+        /* ------------------------------------------------ */
+
+        --homepaddingTop: clamp(0.84375rem, -0.1257187500000001rem + 2.0197265625000003vw, 1.16690625rem);
+        --searchBarLeftPadding: calc(1em * (20.283 / 24.2));
+        --footerPaddingBlock: clamp(20px, -0.25758375000000006px + 2.9921875vw, 27.66px);
+
+        /* ------------------------------------------------ */
+
+        /* gap */
+        /* ------------------------------------------------ */
+
+        --headerRowGap: var(--homepaddingTop);
+        --buttonAreaColumnGap: clamp(16.6px, -2.473399999999991px + 2.483515624999999vw, 22.9578px);
+
+        /* ------------------------------------------------ */
+
+        /* Radius */
+        /* ------------------------------------------------ */
+
+        --searchBarBorderRadius: clamp(17.28px, -2.5747199999999992px + 2.5852500000000003vw, 23.89824px);
+
+        /* ------------------------------------------------ */
+    }
+
+    /* ---------------------------------------------------- */
+
+    /* Header */
+    /* ---------------------------------------------------- */
+
+    header {
+        position: relative;
+    }
+
+    #githubHeaderIcon {
+        display: block;
+        position: absolute;
+        width: var(--githubHeaderIconSize);
+        height: var(--githubHeaderIconSize);
+        background-image: url("./Img/github.svg");
+        background-size: 100%;
+        top: var(--githubHeaderIconTop);
+        right: var(--githubHeaderIconRight);
+    }
+
+    .buttonArea {
+        display: none;
+    }
+    /* ---------------------------------------------------- */
+
+    /* footer */
+    /* ---------------------------------------------------- */
+    footer {
+        background-color: var(--colorBase3);
+    }
+
+    #github {
+        display: none;
+    }
+
+    footer .buttonArea {
+        display: grid;
+    }
+
+    /* ---------------------------------------------------- */
+
+    /* menus */
+    /* ---------------------------------------------------- */
+
+    .filterMenu.show {
+        bottom: var(--filterMenuBottom);
+        transform: translateX(50%);
+    }
+
+    /* ---------------------------------------------------- */
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
