@@ -1246,3 +1246,315 @@ input::-webkit-inner-spin-button {
 
 /* -------------------------------------------------------------------------------------------------------------- */
 
+/* Breakpoint 1024px = 64em */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 64em) {
+    /* Estilos globales */
+    /* ---------------------------------------------------- */
+
+    html {
+        /* Font Size */
+        /* ------------------------------------------------ */
+
+        --githubTitleFontSize: 1.6875rem;
+        --homeTitleFontSize: 1.88125rem;
+        --searchBarFontSize: 1rem;
+        --buttonTextFontSize: 1.25rem;
+        --indicatorStatFontSize: 1.625rem;
+        --valueTextFontSize: calc(1em * (35 / 26));
+
+        /* ------------------------------------------------ */
+
+        /* Size */
+        /* ------------------------------------------------ */
+
+        --footerMinHeight: 6.25rem;
+        --headerHeight: calc(100vh - var(--footerMinHeight));
+        --searchBarWidth: 240px;
+        --menuButtonSize: 1.875rem;
+        --searchBarBorderWidth: 1.041px;
+        --menuButtonIconSize: calc(1em * (15 / 20));
+        --bookCardBaseWidth: 19.5rem;
+        --asideWidth: calc(
+            var(--searchBarWidth) + var(--menuButtonSize) + var(--searchContainerColumnGap) +
+                var(--buttonAreaPaddingInline) * 2
+        );
+        --indicatorContainerWidth: 0px;
+        --fieldContainerIconSize: calc(1em * (23 / 26));
+        --indicatorContainerReferenceHeight: 10.625rem;
+        --indicatorContainerRiserHeight: max(
+            0px,
+            calc(50vh - var(--footerMinHeight) - var(--headerRowGap) - (var(--indicatorContainerReferenceHeight) / 2))
+        );
+
+        /* ------------------------------------------------ */
+
+        /* Padding */
+        /* ------------------------------------------------ */
+
+        --footerPaddingBlock: 0px;
+        --homepaddingTop: 3.75rem;
+        --buttonAreaPaddingInline: 10px;
+        --mainInLinePadding: clamp(40px, 17.142857142857146px + 2.2321428571428568vw, 60px);
+        --mainBlockPadding: clamp(60px, 37.142857142857146px + 2.2321428571428568vw, 80px);
+        --statContainerPaddingBlock: 0px;
+        --fieldContainerInLinePadding: 0px;
+        --indicatorContainerPaddingInLine: calc(1em * (10 / 26));
+        --indicatorContainerPaddingBlock: calc(1em * (15 / 26));
+        --bookEntryMenuPaddingInLine: calc(1em * (30 / 21.4333));
+        --bookEntryMenuPaddingBlock: var(--bookEntryMenuPaddingInLine);
+        --menuInputBarPaddingRight: calc(var(--menuInputBarPaddingLeft) + (1em * (20 / 14)));
+
+        /* ------------------------------------------------ */
+
+        /* Gap */
+        /* ------------------------------------------------ */
+
+        --headerRowGap: 0.9375rem;
+        --searchContainerColumnGap: 10px;
+        --buttonAreaRowGap: 15px;
+        --menuButtonColumnGap: calc(1em * (5 / 20));
+        --buttonAreaColumnGap: 20px;
+        --mainGap: clamp(20px, 8.571428571428573px + 1.1160714285714284vw, 30px);
+        --statContainerColumnGap: calc(1em * (15 / 26));
+        --fieldContainerColumnGap: calc(1em * (10 / 26));
+        --indicatorContainerRowGap: calc(1em * (10 / 26));
+        --bookEntryMenuColumnGap: 15px;
+
+        /* ------------------------------------------------ */
+
+        /* Radius */
+        /* ------------------------------------------------ */
+
+        --searchBarBorderRadius: 10.41px;
+        --indicatorContainerBorderRadius: calc(1em * (20 / 26));
+
+        /* ------------------------------------------------ */
+
+        /* position */
+        /* ------------------------------------------------ */
+
+        --menuInputIndicatorRight: calc(1em * (15.7167 / 21.433));
+        --filterMenuBottom: initial;
+        --filterMenuTop: calc(100% + var(--headerRowGap));
+        --filterMenuRight: 50%;
+
+        /* ------------------------------------------------ */
+    }
+
+    #githubHeaderIcon,
+    footer .buttonArea {
+        display: none;
+    }
+
+    body {
+        grid-template-columns: var(--asideWidth) 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". main";
+    }
+    /* ---------------------------------------------------- */
+
+    /* header */
+    /* ---------------------------------------------------- */
+
+    header {
+        background-color: var(--colorBase2);
+        height: var(--headerHeight);
+        padding-block: 0px;
+        padding-top: var(--homepaddingTop);
+        grid-template-rows: var(--homeIconSize) max-content minmax(var(--indicatorContainerReferenceHeight), 1fr) var(
+                --indicatorContainerRiserHeight
+            );
+        grid-template-areas:
+            "home"
+            "button"
+            "indicator"
+            ".";
+        position: fixed;
+        top: 0px;
+        left: 0px;
+    }
+
+    .buttonArea {
+        grid-area: button;
+        padding-inline: var(--buttonAreaPaddingInline);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, max-content);
+        grid-template-areas:
+            "search search"
+            "add filter";
+        row-gap: var(--buttonAreaRowGap);
+    }
+
+    .searchContainer {
+        column-gap: var(--searchContainerColumnGap);
+    }
+
+    .buttonArea > .menuButton,
+    .filterButtonWrapper .menuButton {
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: center;
+        font-size: var(--buttonTextFontSize);
+        background-image: none;
+        background-size: auto;
+        column-gap: var(--menuButtonColumnGap);
+    }
+
+    .buttonArea > .menuButton::before,
+    .filterButtonWrapper .menuButton::before {
+        width: var(--menuButtonIconSize);
+        height: var(--menuButtonIconSize);
+        content: "";
+        font-size: inherit;
+        background-size: 100%;
+    }
+
+    .filterButtonWrapper {
+        justify-self: start;
+    }
+
+    .addButton {
+        justify-self: end;
+    }
+
+    .filterButton::before {
+        background-image: url("./Img/filter.svg");
+    }
+
+    .addButton::before {
+        background-image: url("./Img/add.svg");
+    }
+
+    .buttonText {
+        display: block;
+        font-size: inherit;
+        font-weight: 400;
+        color: var(--colorPrimario1);
+    }
+
+    #indicatorContainer {
+        background-color: var(--colorBase4);
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, max-content);
+        grid-template-areas:
+            "wantToRead"
+            "reading"
+            "read";
+        padding-inline: var(--indicatorContainerPaddingInLine);
+        padding-block: var(--indicatorContainerPaddingBlock);
+        row-gap: var(--indicatorContainerRowGap);
+        border: none;
+        align-self: end;
+    }
+
+    .statContainer {
+        grid-template-columns: repeat(2, max-content);
+        column-gap: var(--statContainerColumnGap);
+    }
+
+    .statContainer::after {
+        display: none;
+    }
+    .fieldContainer {
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        column-gap: var(--fieldContainerColumnGap);
+    }
+
+    .fieldContainer::before {
+        content: "";
+        width: var(--fieldContainerIconSize);
+        height: var(--fieldContainerIconSize);
+        font-size: inherit;
+        background-size: 100%;
+    }
+
+    .readContainer .fieldContainer::before {
+        background-image: url("./Img/circleGreen.svg");
+    }
+
+    .readingContainer .fieldContainer::before {
+        background-image: url("./Img/circleCyan.svg");
+    }
+
+    .wantToReadContainer .fieldContainer::before {
+        background-image: url("./Img/circleYellow.svg");
+    }
+
+    .fieldText {
+        color: var(--colorBase5);
+    }
+
+    #indicatorContainer .valueContainer {
+        background-color: transparent;
+    }
+
+    .valueText {
+        font-weight: 400;
+        font-size: var(--valueTextFontSize);
+    }
+
+    .readContainer .valueText {
+        color: var(--colorAcento1);
+    }
+
+    .readingContainer .valueText {
+        color: var(--colorAcento2);
+    }
+
+    .wantToReadContainer .valueText {
+        color: var(--colorAcento3);
+    }
+    /* ---------------------------------------------------- */
+
+    /* footer */
+    /* ---------------------------------------------------- */
+
+    footer {
+        background-color: var(--colorBase2);
+        width: var(--asideWidth);
+        min-height: var(--footerMinHeight);
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+    }
+
+    #github {
+        display: block;
+    }
+
+    /* ---------------------------------------------------- */
+
+    /* menu */
+    /* ---------------------------------------------------- */
+
+    .bookEntryMenu {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, max-content);
+        grid-template-areas:
+            "menuTitle menuTitle"
+            "bookTitle bookPageNumber"
+            "bookAuthor bookState"
+            "menuButtons menuButtons";
+    }
+
+    .activatedInput {
+        padding-inline: var(--menuInputBarPaddingLeft) var(--menuInputBarPaddingRight);
+    }
+
+    .menuBookStateContainer .menuInputIndicator {
+        --menuInputIndicatorRight: calc(
+            (-1 * var(--menuInputIconSize)) + ((var(--bookEntryMenuPaddingInLine) * 2) - var(--menuInputIconSize)) / -2
+        );
+    }
+
+    /* ---------------------------------------------------- */
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
