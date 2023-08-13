@@ -1558,3 +1558,68 @@ input::-webkit-inner-spin-button {
 
 /* -------------------------------------------------------------------------------------------------------------- */
 
+/* Breakpoint 1280px = 80em */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+@media (min-width: 80em) {
+    /* Estilos globales */
+    /* ---------------------------------------------------- */
+
+    html {
+        /* padding */
+        /* ------------------------------------------------ */
+
+        --homepaddingTop: clamp(3.75rem, -1.25rem + 6.25vw, 6.25rem);
+        --buttonAreaPaddingInline: clamp(10px, -30px + 3.125vw, 30px);
+        --mainInLinePadding: clamp(40px, 0px + 3.125vw, 60px);
+        --mainBlockPadding: clamp(60px, 20px + 3.125vw, 80px);
+
+        /* ------------------------------------------------ */
+
+        /* Size */
+        /* ------------------------------------------------ */
+
+        --indicatorContainerReferenceHeight: clamp(10.625rem, -1.25rem + 14.84375vw, 16.5625rem);
+        --searchBarWidth: clamp(240px, 0px + 18.75vw, 360px);
+        --menuButtonSize: clamp(1.875rem, 0rem + 2.34375vw, 2.8125rem);
+        --searchBarBorderWidth: clamp(1.041px, -0.001px + 0.08140625000000003vw, 1.562px);
+        --bookCardBaseWidth: clamp(17.916875rem, 1.250625000000003rem + 20.832812499999996vw, 26.25rem);
+        --footerMinHeight: clamp(6.25rem, -1.25rem + 9.375vw, 10rem);
+
+        /* ------------------------------------------------ */
+
+        /* Font size */
+        /* ------------------------------------------------ */
+
+        --homeTitleFontSize: clamp(1.88125rem, -0.36499999999999977rem + 2.8078125vw, 3.004375rem);
+        --indicatorStatFontSize: clamp(1.625rem, -0.3125rem + 2.421875vw, 2.59375rem);
+        --searchBarFontSize: clamp(1rem, 0rem + 1.25vw, 1.5rem);
+        --buttonTextFontSize: clamp(1.25rem, 0rem + 1.5625vw, 1.875rem);
+        --githubTitleFontSize: clamp(1.6875rem, -0.33750000000000036rem + 2.5312500000000004vw, 2.7rem);
+        --bookEntryMenuFontSize: clamp(1.339375rem, 0.0006249999999998757rem + 1.6734375000000004vw, 2.00875rem);
+        --filterMenuFontSize: clamp(1.25rem, 0.0006249999999998757rem + 1.5617187500000003vw, 1.8746875rem);
+
+        /* ------------------------------------------------ */
+
+        /* Gap */
+        /* ------------------------------------------------ */
+
+        --headerRowGap: clamp(0.9375rem, -0.9375rem + 2.34375vw, 1.875rem);
+        --buttonAreaRowGap: clamp(15px, -15px + 2.34375vw, 30px);
+        --searchContainerColumnGap: clamp(10px, 0px + 0.78125vw, 15px);
+        --mainGap: clamp(20px, 0px + 1.5625vw, 30px);
+
+        /* ------------------------------------------------ */
+
+        /* radius */
+        /* ------------------------------------------------ */
+
+        --searchBarBorderRadius: clamp(10.41px, -0.00999999999999801px + 0.8140624999999999vw, 15.62px);
+
+        /* ------------------------------------------------ */
+    }
+
+    /* ---------------------------------------------------- */
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
