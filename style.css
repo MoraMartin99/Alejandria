@@ -453,3 +453,253 @@ header {
 }
 /* -------------------------------------------------------------------------------------------------------------- */
 
+/* Main */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+main {
+    padding-inline: var(--mainInLinePadding);
+    padding-block: var(--mainBlockPadding);
+    grid-area: main;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--bookCardBaseWidth), 1fr));
+    grid-auto-rows: max-content;
+    gap: var(--mainGap);
+}
+
+.bookCard {
+    background-color: var(--colorBase3);
+    border-radius: var(--bookCardBorderRadiusHorizontal) / var(--bookCardBorderRadiusVertical);
+    aspect-ratio: 2 / 1;
+    padding-block: var(--bookCardBlockPadding);
+    padding-inline: var(--bookCardInLinePadding);
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "cover info";
+    align-items: center;
+    column-gap: var(--bookCardColumnGap);
+    container-type: inline-size;
+    container-name: bookCard;
+    position: relative;
+}
+
+.editButton {
+    position: absolute;
+    background-color: transparent;
+    color: var(--colorPrimario1);
+    font-weight: 500;
+    display: flex;
+    font-size: var(--editButtonFontSize);
+    column-gap: var(--editButtonColumnGap);
+    top: var(--editButtonTop);
+    right: var(--editButtonRight);
+}
+
+.editButton::before {
+    content: "";
+    background-image: url("/Img/edit.svg");
+    background-size: 100%;
+    width: var(--editButtonIconSize);
+    height: var(--editButtonIconSize);
+}
+
+.bookCover {
+    grid-area: cover;
+    width: var(--bookCoverWidth);
+    height: var(--bookCoverHeight);
+}
+
+.infoContainer {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--infoContainerRowGap);
+}
+
+.bookTitle {
+    color: var(--colorPrimario1);
+    font-weight: 600;
+    font-size: var(--bookTitleFontSize);
+}
+
+.bookAuthor {
+    color: var(--colorPrimario3);
+    font-weight: 500;
+    font-size: var(--bookAuthorFontSize);
+}
+
+.bookPages {
+    color: var(--colorPrimario4);
+    font-weight: 500;
+    font-size: var(--bookPagesFontSize);
+}
+
+.bookStateDropdownContainer {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "base";
+    top: var(--bookStateDropdownContainerTop);
+    right: var(--editButtonRight);
+}
+
+.dropdownBaseContainer {
+    grid-area: base;
+    background-color: var(--colorBase2);
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: var(--dropdownBaseContainerWidth);
+    height: var(--dropdownBaseContainerHeight);
+    column-gap: var(--dropdownBaseContainerColumnGap);
+    padding-inline: var(--dropdownBaseContainerPaddingInLine);
+}
+
+.bookStateDropdownContainer[data-value=""] .dropdownBaseContainer {
+    grid-template-columns: 1fr max-content;
+    justify-items: end;
+}
+
+.bookStateDropdownContainer.show .dropdownBaseContainer {
+    background-color: var(--colorBase1);
+    cursor: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookStateDropdownContainer:not(.show) .dropdownBaseContainer::after {
+    content: "";
+    font-size: inherit;
+    background-size: 100%;
+    background-image: url("./Img/arrowDown.svg");
+    width: var(--dropdownBaseContainerArrowIcon);
+    height: var(--dropdownBaseContainerArrowIcon);
+}
+
+.optionText {
+    font-weight: 500;
+    font-size: var(--stateOptionFontSize);
+}
+
+.bookStateDropdownContainer[data-value=""] .optionText,
+.show .optionText {
+    font-weight: 600;
+}
+
+.stateOptionContainer {
+    display: none;
+}
+
+.bookStateDropdownContainer.show .stateOptionContainer {
+    grid-area: options;
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: repeat(3, max-content);
+    cursor: pointer;
+}
+
+.stateOption {
+    background-color: var(--colorBase2);
+    font-weight: 500;
+    color: var(--colorPrimario1);
+    display: flex;
+    align-items: center;
+    width: var(--dropdownBaseContainerWidth);
+    height: var(--dropdownBaseContainerHeight);
+    font-size: var(--stateOptionFontSize);
+    padding-left: var(--stateOptionColumnGap);
+    column-gap: var(--stateOptionColumnGap);
+}
+
+.stateOption::before,
+.bookStateDropdownContainer:not([data-value=""], .show) .dropdownBaseContainer::before {
+    content: "";
+    background-size: 100%;
+}
+
+.stateOption[data-value="wantToRead"]::before,
+.bookStateDropdownContainer[data-value="wantToRead"] .dropdownBaseContainer::before {
+    background-image: url("./Img/circleYellow.svg");
+}
+
+.stateOption[data-value="read"]::before,
+.bookStateDropdownContainer[data-value="read"] .dropdownBaseContainer::before {
+    background-image: url("./Img/circleGreen.svg");
+}
+
+.stateOption[data-value="reading"]::before,
+.bookStateDropdownContainer[data-value="reading"] .dropdownBaseContainer::before {
+    background-image: url("./Img/circleCyan.svg");
+}
+
+.bookStateDropdownContainer.show {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, max-content);
+    grid-template-areas:
+        "base"
+        "options";
+    border: var(--bookStateDropdownContainerBorderWidth) solid var(--colorPrimario1);
+}
+
+.stateOption::before,
+.dropdownBaseContainer::before {
+    width: var(--stateOptionIconSize);
+    height: var(--stateOptionIconSize);
+}
+
+@container bookCard (min-width: 1px) {
+    .bookCard * {
+        /* font size */
+        /* ----------------------------------------------------- */
+        --editButtonFontSize: calc(100cqw * (14 / 256));
+        --bookTitleFontSize: calc(100cqw * (16 / 256));
+        --bookAuthorFontSize: calc(100cqw * (14.5 / 256));
+        --bookPagesFontSize: calc(100cqw * (14 / 256));
+        --stateOptionFontSize: calc(100cqw * (14 / 256));
+        /* ----------------------------------------------------- */
+
+        /* gap */
+        /* ----------------------------------------------------- */
+        --editButtonColumnGap: calc(100cqw * (5 / 256));
+        --infoContainerRowGap: calc(100cqw * (2.5 / 256));
+        --dropdownBaseContainerColumnGap: calc(100cqw * (5 / 256));
+        --stateOptionColumnGap: calc(100cqw * (6 / 256));
+        /* ----------------------------------------------------- */
+
+        /* position */
+        /* ----------------------------------------------------- */
+        --editButtonTop: calc(100cqw * (6 / 256));
+        --editButtonRight: calc(100cqw * (12 / 256));
+        --bookStateDropdownContainerTop: calc(100cqw * (114 / 256));
+        /* ----------------------------------------------------- */
+
+        /* Size */
+        /* ----------------------------------------------------- */
+        --editButtonIconSize: calc(100cqw * (16 / 256));
+        --bookCoverWidth: calc(100cqw * (70 / 256));
+        --bookCoverHeight: calc(100cqw * (90 / 256));
+        --bookStateDropdownContainerBorderWidth: calc(100cqw / 256);
+        --dropdownBaseContainerWidth: calc(100cqw * (105 / 256));
+        --dropdownBaseContainerHeight: calc(100cqw * (20 / 256));
+        --dropdownBaseContainerArrowIcon: calc(100cqw * (16 / 256));
+        --stateOptionIconSize: calc(100cqw * (12 / 256));
+        /* ----------------------------------------------------- */
+
+        /* Padding */
+        /* ----------------------------------------------------- */
+        --dropdownBaseContainerPaddingInLine: calc(100cqw * (4 / 256));
+        /* ----------------------------------------------------- */
+    }
+
+    .bookStateDropdownContainer[data-value=""] .dropdownBaseContainer {
+        --dropdownBaseContainerPaddingInLine: calc(100cqw * (2.5 / 256));
+        --dropdownBaseContainerColumnGap: var(--dropdownBaseContainerPaddingInLine);
+    }
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
