@@ -703,3 +703,40 @@ main {
 
 /* -------------------------------------------------------------------------------------------------------------- */
 
+/* Footer */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+footer {
+    font-size: var(--githubTitleFontSize);
+    padding-block: var(--footerPaddingBlock);
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#github {
+    position: relative;
+    font-size: inherit;
+}
+
+#github::before {
+    content: "";
+    width: var(--footerGithubIconSize);
+    height: var(--footerGithubIconSize);
+    font-size: inherit;
+    background-image: url("./Img/github.svg");
+    background-size: 100%;
+    position: absolute;
+    top: var(--footerGithubIconTop);
+    left: var(--footerGithubIconLeft);
+}
+
+#githubTitle {
+    font-size: inherit;
+    font-weight: 700;
+    color: var(--colorPrimario1);
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
