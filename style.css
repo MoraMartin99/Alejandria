@@ -740,3 +740,387 @@ footer {
 
 /* -------------------------------------------------------------------------------------------------------------- */
 
+/* menus */
+/* -------------------------------------------------------------------------------------------------------------- */
+
+.filterMenu {
+    display: none;
+}
+
+.filterMenu.show {
+    background-color: var(--colorBase2);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--filterMenuFontSize);
+    top: var(--filterMenuTop);
+    right: var(--filterMenuRight);
+    border-radius: var(--filterMenuBorderRadius);
+    overflow: hidden;
+    border: var(--filterMenuBorderWidth) solid var(--colorPrimario1);
+    position: absolute;
+}
+
+.filterContainer {
+    display: flex;
+    padding-left: var(--filterContainerPaddingLeft);
+    align-items: center;
+    font-size: inherit;
+    width: var(--filterContainerWidth);
+    height: var(--filterContainerHeight);
+    column-gap: var(--filterContainerColumnGap);
+}
+
+.filterText {
+    font-size: inherit;
+    color: var(--colorPrimario1);
+    font-weight: 500;
+}
+
+.filterTitleContainer {
+    padding-left: 0px;
+    justify-content: center;
+    background-color: var(--colorBase1);
+}
+
+.filterTitleContainer .filterText {
+    font-weight: 600;
+}
+
+.filterCheckbox {
+    background-color: var(--colorBase5);
+    appearance: none;
+    width: var(--filterCheckboxSize);
+    height: var(--filterCheckboxSize);
+    border: var(--filterCheckboxBorderWidth) solid var(--colorPrimario1);
+    cursor: pointer;
+}
+
+.filterCheckbox + .filterText {
+    cursor: pointer;
+}
+
+.filterCheckbox:checked {
+    background-image: url("./Img/check.svg");
+    background-size: var(--filterCheckboxBGSize);
+    background-position: center;
+}
+
+.filterAllContainer .filterCheckbox:checked {
+    background-color: var(--colorAcento4);
+}
+
+.filterWantToReadContainer .filterCheckbox:checked {
+    background-color: var(--colorAcento3);
+}
+
+.filterReadContainer .filterCheckbox:checked {
+    background-color: var(--colorAcento1);
+}
+
+.filterReadingContainer .filterCheckbox:checked {
+    background-color: var(--colorAcento2);
+}
+
+.filterButtonContainer {
+    font-size: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: var(--filterButtonContainerColumnGap);
+    padding-block: var(--filterButtonContainerPaddingBlock);
+}
+
+.cancelAcceptButton {
+    font-size: inherit;
+    color: var(--colorPrimario1);
+    font-weight: 500;
+    width: var(--cancelAcceptButtonWidth);
+    height: var(--cancelAcceptButtonHeight);
+    border: solid var(--cancelAcceptButtonBorderWidth);
+    border-radius: var(--cancelAcceptButtonBorderRadius);
+}
+
+.cancelButton {
+    background-color: var(--colorInvalid2);
+    border-color: var(--colorInvalid1);
+}
+
+.acceptButton {
+    background-color: var(--colorValid2);
+    border-color: var(--colorValid1);
+}
+
+.menuWrapper {
+    display: none;
+}
+
+.menuWrapper.show {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--colorOverlay1);
+}
+
+.bookEntryMenu {
+    padding-block: var(--bookEntryMenuPaddingBlock);
+    padding-inline: var(--bookEntryMenuPaddingInLine);
+    font-size: var(--bookEntryMenuFontSize);
+    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, max-content);
+    grid-template-areas:
+        "menuTitle"
+        "bookTitle"
+        "bookAuthor"
+        "bookPageNumber"
+        "bookState"
+        "menuButtons";
+    background-color: var(--colorBase3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    row-gap: var(--bookEntryMenuRowGap);
+    column-gap: var(--bookEntryMenuColumnGap);
+    border: var(--bookEntryMenuBorderWidth) solid var(--colorPrimario1);
+    border-radius: var(--bookEntryMenuBorderRadius);
+}
+
+.menuTitle {
+    grid-area: menuTitle;
+    font-size: var(--menuTitleFontSize);
+    font-weight: 700;
+    color: var(--colorPrimario1);
+    padding-bottom: var(--menuTitlePaddingBottom);
+    justify-self: center;
+}
+
+.menuInputContainer {
+    font-size: inherit;
+    height: var(--menuInputContainerHeight);
+    row-gap: var(--menuInputContainerRowGap);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, max-content);
+}
+
+.menuInputTitle {
+    font-size: inherit;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--colorPrimario3);
+    padding-left: var(--menuInputTitlePaddingLeft);
+}
+
+.menuInputWrapper {
+    font-size: inherit;
+    position: relative;
+    row-gap: var(--menuInputContainerRowGap);
+    display: grid;
+    grid-template-columns: 11fr;
+    grid-auto-rows: max-content;
+}
+
+.menuInputBar {
+    font-size: var(--menuInputBarFontSize);
+    width: var(--menuInputBarWidth);
+    height: var(--menuInputBarHeight);
+    border-radius: var(--menuInputBarBorderRadius);
+    border: var(--menuInputBarBorderWidth) solid var(--colorPrimario1);
+    color: var(--colorPrimario3);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    padding-inline: var(--menuInputBarPaddingLeft);
+}
+
+/* desactivar las arrows en input type number para chrome */
+.menuInputBar::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* desactivar las arrows en input type number para firefox */
+.menuInputBar[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.menuInputBar.activatedInput:valid {
+    border-color: var(--colorValid1);
+}
+
+.menuInputBar.activatedInput:invalid {
+    border-color: var(--colorInvalid1);
+    background-color: var(--colorInvalid2);
+}
+
+.menuInputIndicator {
+    width: var(--menuInputIconSize);
+    height: var(--menuInputIconSize);
+    font-size: inherit;
+    position: absolute;
+    background-size: 100%;
+    top: var(--menuInputIndicatorTop);
+    right: var(--menuInputIndicatorRight);
+}
+
+.menuInputBar.activatedInput:invalid ~ .menuInputIndicator {
+    background-image: url("./Img/invalid.svg");
+}
+
+.menuInputBar.activatedInput:valid ~ .menuInputIndicator {
+    background-image: url("./Img/valid.svg");
+}
+
+.menuIndication {
+    display: none;
+}
+
+.menuInputBar.activatedInput:invalid ~ .menuIndication {
+    padding-left: var(--menuInputTitlePaddingLeft);
+    display: flex;
+    font-size: var(--menuIndicationFontSize);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--colorPrimario3);
+    column-gap: var(--menuIndicationColumnGap);
+    align-items: center;
+}
+
+.menuIndication::after {
+    content: "";
+    font-size: inherit;
+    width: var(--menuIndicationIconSize);
+    height: var(--menuIndicationIconSize);
+    background-size: 100%;
+    background-image: url("./Img/warning.svg");
+}
+
+.menuBookStateContainer {
+    --menuInputIndicatorTop: calc(((1em * (19.35 / 15)) - var(--menuInputIconSize)) / 2);
+}
+
+.menuBookStateContainer .menuInputBar {
+    display: none;
+}
+
+.menuBookStateContainer .bookStateDropdownContainer {
+    position: static;
+    font-size: var(--stateOptionFontSize);
+}
+
+.menuBookStateContainer .dropdownBaseContainer {
+    font-size: inherit;
+}
+
+.menuBookStateContainer .bookStateDropdownContainer[data-value=""] .dropdownBaseContainer {
+    --dropdownBaseContainerPaddingInLine: calc(1em * (3.525 / 14));
+    --dropdownBaseContainerColumnGap: var(--dropdownBaseContainerPaddingInLine);
+}
+
+.menuBookStateContainer .menuInputWrapper {
+    justify-self: center;
+}
+
+.menuBookStateContainer .menuInputBar.activatedInput:invalid ~ .menuIndication {
+    position: absolute;
+    white-space: nowrap;
+    padding: 0px;
+    top: calc((1em * (19.35 / 12)) + (1em * (5 / 12)));
+}
+
+.menuBookStateContainer .show .stateOptionContainer {
+    font-size: inherit;
+}
+
+.menuBookStateContainer .stateOption {
+    font-size: inherit;
+}
+
+.menuBookStateContainer .stateOption::before,
+.menuBookStateContainer .dropdownBaseContainer::before {
+    font-size: inherit;
+}
+
+.menuButtonContainer {
+    grid-area: menuButtons;
+    display: flex;
+    justify-content: center;
+    column-gap: var(--menuButtonContainerColumnGap);
+    font-size: var(--stateOptionFontSize);
+}
+
+.menuDeleteContainer {
+    position: absolute;
+    font-size: inherit;
+    display: flex;
+    column-gap: var(--menuDeleteContainerColumnGap);
+    align-items: center;
+    cursor: pointer;
+    top: var(--menuDeleteContainerTop);
+    right: var(--menuDeleteContainerRight);
+}
+
+.menuDeleteContainer::after {
+    content: "";
+    font-size: inherit;
+    width: var(--menuDeleteContainerIconSize);
+    height: var(--menuDeleteContainerIconSize);
+    background-image: url("./Img/delete.svg");
+    background-size: 100%;
+}
+
+.deleteButton {
+    background-color: transparent;
+    font-size: inherit;
+    font-weight: 500;
+    color: var(--colorInvalid1);
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--deleteButtonRowGap);
+    line-height: 1;
+}
+
+.deleteButton::after {
+    content: "";
+    font-size: inherit;
+    width: var(--deleteButtonUnderlineWidth);
+    height: var(--deleteButtonUnderlineHeight);
+    background-color: var(--colorInvalid1);
+}
+
+.deleteMenu {
+    background-color: var(--colorBase3);
+    padding-block: var(--deleteMenuPaddingBlock);
+    padding-inline: var(--deleteMenuPaddingInLine);
+    font-size: var(--deleteMenuFontSize);
+    position: fixed;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: repeat(2, max-content);
+    grid-template-areas:
+        "warning warning"
+        "cancel accept";
+    display: grid;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: var(--deleteMenuPaddingBlock) var(--deleteMenuColumnGap);
+    border-radius: var(--deleteMenuBorderRadius);
+    border: var(--colorInvalid1) solid var(--deleteMenuBorderWidth);
+}
+
+.deleteText {
+    grid-area: warning;
+    font-size: inherit;
+    font-weight: 500;
+    color: var(--colorPrimario1);
+}
+
+.deleteMenu .cancelButton {
+    justify-self: end;
+}
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
