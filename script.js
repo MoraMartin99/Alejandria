@@ -399,3 +399,309 @@ const bookEntryMenuDropDownMenuHandler = (target) => {
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* menuWrapper */
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+const menuWrapperClickHandler = (e) => {
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    const bookStateDropdownContainerElement = currentTarget.querySelector(".bookStateDropdownContainer");
+    const cancelButton = currentTarget.querySelector(".cancelButton");
+    const acceptButton = currentTarget.querySelector(".acceptButton");
+    const menuDeleteContainer = currentTarget.querySelector(".menuDeleteContainer");
+    const bookEntryMenuElement = currentTarget.querySelector(".bookEntryMenu");
+    const deleteWrapper = document.querySelector("#deleteWrapper");
+
+    if (!bookEntryMenuElement.contains(target)) {
+        hideAllMenuInterfaces();
+        return;
+    }
+
+    if (bookStateDropdownContainerElement.contains(target)) {
+        bookEntryMenuDropDownMenuHandler(target);
+        return;
+    }
+
+    if (cancelButton.contains(target)) {
+        resetBookEntryMenuValues(currentTarget);
+        hideAllMenuInterfaces();
+        return;
+    }
+
+    if (acceptButton.contains(target)) {
+        e.preventDefault();
+
+        if (testBookEntryMenuValidity(bookEntryMenuElement)) {
+            validBookEntryMenuHandler(bookEntryMenuElement, target);
+            resetBookEntryMenuValues(currentTarget);
+            hideAllMenuInterfaces();
+        }
+
+        return;
+    }
+
+    if (menuDeleteContainer) {
+        if (menuDeleteContainer.contains(target)) {
+            showDeleteWrapper(deleteWrapper);
+            return;
+        }
+    }
+};
+
+const menuWrapperFocusoutHandler = (e) => {
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    const menuInputBarArr = Array.from(currentTarget.querySelectorAll(".menuInputBar"));
+
+    if (
+        menuInputBarArr.some((menuInputBar) => {
+            return menuInputBar.contains(target);
+        })
+    ) {
+        const closestMenuInputBarElement = target.closest(".menuInputBar");
+        activateTextInput(closestMenuInputBarElement);
+    }
+};
+
+const showBookEntryMenu = (menuWrapperElement) => {
+    hideAllMenuInterfaces();
+    body.style.overflow = "hidden";
+    addClass(menuWrapperElement, ["show"]);
+    menuWrapperElement.addEventListener("click", menuWrapperClickHandler);
+    menuWrapperElement.addEventListener("focusout", menuWrapperFocusoutHandler);
+};
+
+const loadBookEntryMenu = (menuWrapperElement, bookCardElement) => {
+    const bookCardTitle = bookCardElement.querySelector(".bookTitle").innerText;
+    const bookCardAuthor = bookCardElement.querySelector(".bookAuthor").innerText;
+    const bookCardPages = bookCardElement.querySelector(".bookPages").innerText.match(/^\d+/)[0];
+    const bookCardState = bookCardElement.querySelector(".bookStateDropdownContainer").getAttribute("data-value");
+    const title = menuWrapperElement.querySelector(".menuInputContainer:nth-last-child(5) .menuInputBar");
+    const author = menuWrapperElement.querySelector(".menuInputContainer:nth-last-child(4) .menuInputBar");
+    const nPages = menuWrapperElement.querySelector(".menuInputContainer:nth-last-child(3) .menuInputBar");
+    const state = menuWrapperElement.querySelector(".menuInputContainer:nth-last-child(2) .menuInputBar");
+    const bookStateDropdownContainer = menuWrapperElement.querySelector(".bookStateDropdownContainer");
+
+    title.value = bookCardTitle;
+    author.value = bookCardAuthor;
+    nPages.value = bookCardPages;
+    state.value = bookCardState;
+    bookStateDropdownContainer.setAttribute("data-value", bookCardState);
+    updateDropDownMenuText(bookStateDropdownContainer);
+};
+
+const showDeleteWrapper = (wrapperElement) => {
+    const baseWrapperElement = document.querySelector("#editMenuWrapper");
+    hideAllMenuInterfaces([baseWrapperElement]);
+    addClass(wrapperElement, ["show"]);
+    wrapperElement.addEventListener("click", deleteWrapperClickHandler);
+};
+
+const deleteWrapperClickHandler = (e) => {
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    const menuElement = currentTarget.querySelector(".deleteMenu");
+    const baseWrapperElement = document.querySelector("#editMenuWrapper");
+    const cancelButton = currentTarget.querySelector(".cancelButton");
+    const acceptButton = currentTarget.querySelector(".acceptButton");
+    const bookCardSelectedElement = document.querySelector(".bookCard.selected");
+
+    if (!menuElement.contains(target)) {
+        hideAllMenuInterfaces([baseWrapperElement]);
+        return;
+    }
+
+    if (cancelButton.contains(target)) {
+        hideAllMenuInterfaces([baseWrapperElement]);
+        return;
+    }
+
+    if (acceptButton.contains(target)) {
+        deleteBookCard(bookCardSelectedElement);
+        resetBookEntryMenuValues(baseWrapperElement);
+        hideAllMenuInterfaces();
+        return;
+    }
+};
+
+const deleteBookCard = (bookCardElement) => {
+    removeBookObjArr([bookCardElement.id], user.bookArr);
+    removeElement([bookCardElement]);
+    updateIndicator();
+};
+
+const resetBookEntryMenuValues = (bookEntryMenuElement) => {
+    const inputElementArr = Array.from(bookEntryMenuElement.querySelectorAll(`input`));
+    const bookStateDropdownContainerElement = bookEntryMenuElement.querySelector(".bookStateDropdownContainer");
+
+    inputElementArr.forEach((item) => {
+        item.value = "";
+        removeClass(item, ["activatedInput"]);
+    });
+
+    bookStateDropdownContainerElement.setAttribute("data-value", "");
+    updateDropDownMenuText(bookStateDropdownContainerElement);
+};
+
+const activateTextInput = (textInputElement) => {
+    addClass(textInputElement, ["activatedInput"]);
+};
+
+const testBookEntryMenuValidity = (bookEntryMenuElement) => {
+    const menuInputBarArr = Array.from(bookEntryMenuElement.querySelectorAll(".menuInputBar"));
+
+    menuInputBarArr.forEach((input) => {
+        activateTextInput(input);
+    });
+
+    return bookEntryMenuElement.reportValidity();
+};
+
+const validBookEntryMenuHandler = (bookEntryMenuElement) => {
+    const bookArr = user.bookArr;
+    const bookCardSelectedElement = document.querySelector(".bookCard.selected");
+    let bookStateDropdownContainerElement;
+
+    if (bookEntryMenuElement.matches("#addMenu")) {
+        addBookCardObj(bookEntryMenuElement, bookArr);
+        addBookCardElement(main, bookArr, bookArr.length - 1);
+    } else if (bookEntryMenuElement.matches("#editMenu")) {
+        editBookCardObj(bookEntryMenuElement, bookArr, bookCardSelectedElement.id);
+        rebuildBookCardElement(bookCardSelectedElement);
+        bookStateDropdownContainerElement = bookCardSelectedElement.querySelector(".bookStateDropdownContainer");
+        updateBookCard(bookStateDropdownContainerElement);
+    }
+};
+
+const getBookCardElement = (bookObj) => {
+    const bookCard = document.createElement("div");
+    const pages = bookObj.nPages === "1" ? `${bookObj.nPages} página` : `${bookObj.nPages} páginas`;
+    const innerHTML = `<svg
+                    class="bookCover"
+                    viewBox="0 0 70 90"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:svg="http://www.w3.org/2000/svg"
+                >
+                    <g class="bookGroup">
+                        <path id="rect4" style="fill: ${bookObj.color.bookBaseImgColor}" class="bookBaseImg" d="M 0,0 H 70 V 90 H 0 Z" />
+                        <path id="rect8" style="fill: ${bookObj.color.bookSideImgColor}" class="bookSideImg" d="M 0,0 H 10 V 90 H 0 Z" />
+                        <path
+                            class="bookTitleImg"
+                            d="m 39.386719,17.642578 -1.41211,10.121094 h 0.908203 l 0.251954,-1.021484 c 0.293771,0.909999 0.88062,1.191406 1.580078,1.191406 1.370934,0 2.839844,-1.596707 2.839844,-4.970703 0,-1.889999 -0.782213,-2.730469 -1.859376,-2.730469 -0.6435,0 -1.132793,0.307813 -1.65039,1.007812 l 0.488281,-3.597656 z M 33.875,18.160156 29.482422,27.763672 h 1.216797 l 0.964843,-2.140625 h 3.847657 L 35.875,27.763672 h 1.273438 l -1.69336,-9.603516 z m 0.615234,1.007813 h 0.05664 c 0,0 0.01436,0.742453 0.07031,1.064453 l 0.71289,4.269531 h -3.162109 l 1.93164,-4.269531 c 0.139891,-0.308 0.390625,-1.064453 0.390625,-1.064453 z m 12.898438,1.064453 c -2.392142,0 -2.923828,2.855393 -2.923828,5.02539 0,1.833999 0.867029,2.675782 2.251953,2.675782 1.496836,0 2.365016,-1.359424 2.546875,-2.857422 h -1.148438 c -0.111913,0.965999 -0.64239,1.833984 -1.425781,1.833984 -0.671478,0 -1.035156,-0.644001 -1.035156,-1.75 0,-0.783999 0.19557,-3.90625 1.734375,-3.90625 0.615521,0 0.908203,0.560672 0.908203,1.638672 v 0.238281 h 1.189453 v -0.251953 c 0,-1.805999 -0.726721,-2.646484 -2.097656,-2.646484 z m -6.042969,1.021484 c 0.685467,0 1.035156,0.533657 1.035156,1.597656 0,1.203999 -0.337147,4.058594 -1.833984,4.058594 -0.685467,0 -1.019531,-0.532032 -1.019531,-1.582031 0,-1.119999 0.36349,-4.074219 1.818359,-4.074219 z"
+                            style="fill: ${bookObj.color.bookTitleImgColor}; fill-opacity: 1"
+                        />
+                    </g>
+                </svg>
+                <button class="editButton">Editar</button>
+                <div class="infoContainer">
+                    <p class="bookTitle">${bookObj.title}</p>
+                    <p class="bookAuthor">${bookObj.author}</p>
+                    <p class="bookPages">${pages}</p>
+                </div>
+                <div data-value="${bookObj.state}" class="bookStateDropdownContainer">
+                    <div class="dropdownBaseContainer">
+                        <p class="optionText">Seleccionar</p>
+                    </div>
+                    <div class="stateOptionContainer">
+                        <div data-value="wantToRead" class="stateOption">Quiero leer</div>
+                        <div data-value="read" class="stateOption">Leído</div>
+                        <div data-value="reading" class="stateOption">Leyendo</div>
+                    </div>
+                </div>`;
+
+    bookCard.innerHTML = innerHTML;
+    bookCard.classList.add("bookCard");
+    bookCard.id = bookObj.id;
+    return bookCard;
+};
+
+const addBookCardObj = (bookEntryMenuElement, destinationArr) => {
+    const title = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(5) .menuInputBar").value;
+    const author = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(4) .menuInputBar").value;
+    const nPages = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(3) .menuInputBar").value;
+    const state = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(2) .menuInputBar").value;
+    const bookObj = new Book(title, author, nPages, state);
+
+    destinationArr.push(bookObj);
+};
+
+const addBookCardElement = (parentElement, bookCardObjArr, index = undefined) => {
+    let childElement;
+    let bookStateDropdownContainerElement;
+
+    if (index) {
+        childElement = getBookCardElement(bookCardObjArr[index]);
+        bookStateDropdownContainerElement = childElement.querySelector(".bookStateDropdownContainer");
+        parentElement.appendChild(childElement);
+        updateBookCard(bookStateDropdownContainerElement);
+    } else {
+        bookCardObjArr.forEach((obj) => {
+            childElement = getBookCardElement(obj);
+            bookStateDropdownContainerElement = childElement.querySelector(".bookStateDropdownContainer");
+            parentElement.appendChild(childElement);
+            updateBookCard(bookStateDropdownContainerElement);
+        });
+    }
+};
+
+const editBookCardObj = (bookEntryMenuElement, destinationArr, bookCardID) => {
+    const title = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(5) .menuInputBar").value;
+    const author = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(4) .menuInputBar").value;
+    const nPages = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(3) .menuInputBar").value;
+    const state = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(2) .menuInputBar").value;
+    const bookObj = user.bookArr.find((item) => {
+        return item.id === bookCardID;
+    });
+
+    bookObj.title = title;
+    bookObj.author = author;
+    bookObj.nPages = nPages;
+    bookObj.state = state;
+};
+
+const rebuildBookCardElement = (bookCardElement) => {
+    const id = bookCardElement.id;
+    const bookObj = user.bookArr.find((item) => {
+        return item.id === id;
+    });
+    const pages = bookObj.nPages === "1" ? `${bookObj.nPages} página` : `${bookObj.nPages} páginas`;
+    const innerHTML = `<svg
+                    class="bookCover"
+                    viewBox="0 0 70 90"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:svg="http://www.w3.org/2000/svg"
+                >
+                    <g class="bookGroup">
+                        <path id="rect4" style="fill: ${bookObj.color.bookBaseImgColor}" class="bookBaseImg" d="M 0,0 H 70 V 90 H 0 Z" />
+                        <path id="rect8" style="fill: ${bookObj.color.bookSideImgColor}" class="bookSideImg" d="M 0,0 H 10 V 90 H 0 Z" />
+                        <path
+                            class="bookTitleImg"
+                            d="m 39.386719,17.642578 -1.41211,10.121094 h 0.908203 l 0.251954,-1.021484 c 0.293771,0.909999 0.88062,1.191406 1.580078,1.191406 1.370934,0 2.839844,-1.596707 2.839844,-4.970703 0,-1.889999 -0.782213,-2.730469 -1.859376,-2.730469 -0.6435,0 -1.132793,0.307813 -1.65039,1.007812 l 0.488281,-3.597656 z M 33.875,18.160156 29.482422,27.763672 h 1.216797 l 0.964843,-2.140625 h 3.847657 L 35.875,27.763672 h 1.273438 l -1.69336,-9.603516 z m 0.615234,1.007813 h 0.05664 c 0,0 0.01436,0.742453 0.07031,1.064453 l 0.71289,4.269531 h -3.162109 l 1.93164,-4.269531 c 0.139891,-0.308 0.390625,-1.064453 0.390625,-1.064453 z m 12.898438,1.064453 c -2.392142,0 -2.923828,2.855393 -2.923828,5.02539 0,1.833999 0.867029,2.675782 2.251953,2.675782 1.496836,0 2.365016,-1.359424 2.546875,-2.857422 h -1.148438 c -0.111913,0.965999 -0.64239,1.833984 -1.425781,1.833984 -0.671478,0 -1.035156,-0.644001 -1.035156,-1.75 0,-0.783999 0.19557,-3.90625 1.734375,-3.90625 0.615521,0 0.908203,0.560672 0.908203,1.638672 v 0.238281 h 1.189453 v -0.251953 c 0,-1.805999 -0.726721,-2.646484 -2.097656,-2.646484 z m -6.042969,1.021484 c 0.685467,0 1.035156,0.533657 1.035156,1.597656 0,1.203999 -0.337147,4.058594 -1.833984,4.058594 -0.685467,0 -1.019531,-0.532032 -1.019531,-1.582031 0,-1.119999 0.36349,-4.074219 1.818359,-4.074219 z"
+                            style="fill: ${bookObj.color.bookTitleImgColor}; fill-opacity: 1"
+                        />
+                    </g>
+                </svg>
+                <button class="editButton">Editar</button>
+                <div class="infoContainer">
+                    <p class="bookTitle">${bookObj.title}</p>
+                    <p class="bookAuthor">${bookObj.author}</p>
+                    <p class="bookPages">${pages}</p>
+                </div>
+                <div data-value="${bookObj.state}" class="bookStateDropdownContainer">
+                    <div class="dropdownBaseContainer">
+                        <p class="optionText">Seleccionar</p>
+                    </div>
+                    <div class="stateOptionContainer">
+                        <div data-value="wantToRead" class="stateOption">Quiero leer</div>
+                        <div data-value="read" class="stateOption">Leído</div>
+                        <div data-value="reading" class="stateOption">Leyendo</div>
+                    </div>
+                </div>`;
+
+    bookCardElement.innerHTML = innerHTML;
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
