@@ -189,3 +189,40 @@ const deleteRestriction = (type, destinationArr) => {
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* Object Constructors */
+/* ----------------------------------------------------------------------------------------------------------------- */
+function Book(title, author, nPages, state) {
+    const bookArr = user.bookArr;
+    const regex = /(?<=hsl\()\d+/;
+    const tolerance = 30;
+    let lastObjHue;
+    let hue;
+    let lasIndex;
+
+    if (bookArr.length) {
+        lasIndex = bookArr.length - 1;
+        lastObjHue = parseInt(bookArr[lasIndex].color.bookBaseImgColor.match(regex)[0]);
+        hue = getRandomHue([22, lastObjHue], tolerance);
+    } else {
+        hue = getRandomHue([22], tolerance);
+    }
+
+    this.title = title;
+    this.author = author;
+    this.nPages = nPages;
+    this.state = state;
+    this.id = getBookCardID();
+    this.color = {
+        bookBaseImgColor: getHSLColor(hue, 100, 70),
+        bookSideImgColor: getHSLColor(hue, 93, 28),
+        bookTitleImgColor: "#000000",
+    };
+}
+
+function Restriction(type, testHandler, testArr) {
+    this.type = type;
+    this.testHandler = testHandler;
+    this.testArr = testArr;
+}
+/* ----------------------------------------------------------------------------------------------------------------- */
+
