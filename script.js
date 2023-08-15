@@ -226,3 +226,50 @@ function Restriction(type, testHandler, testArr) {
 }
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* Funciones auxiliares para Object Constructors */
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+const getHSLColor = (hue, saturation, lightness, opacity = undefined) => {
+    let HSLColor;
+
+    if (typeof opacity === "number") {
+        HSLColor = `hsl(${hue} ${saturation}% ${lightness}% / ${opacity})`;
+    } else {
+        HSLColor = `hsl(${hue} ${saturation}% ${lightness}%)`;
+    }
+
+    return HSLColor;
+};
+
+const getBookCardID = () => {
+    const length = user.bookArr.length;
+    const lastIndex = user.bookArr.length - 1;
+    const regex = /\d+$/;
+    let lastObjIDNumber;
+
+    if (!length) {
+        return `bookCard${length + 1}`;
+    } else {
+        lastObjIDNumber = parseInt(user.bookArr[lastIndex].id.match(regex)[0]);
+        return `bookCard${lastObjIDNumber + 1}`;
+    }
+};
+
+const getRandomHue = (exceptionHueArr = undefined, tolerance = 1) => {
+    let hue = getRandomNumberArr(0, 360)[0];
+
+    if (exceptionHueArr) {
+        while (
+            !exceptionHueArr.every((item) => {
+                return hue < item - tolerance || hue > item + tolerance;
+            })
+        ) {
+            hue = getRandomNumberArr(0, 360)[0];
+        }
+    }
+
+    return hue;
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
