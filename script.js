@@ -705,3 +705,230 @@ const rebuildBookCardElement = (bookCardElement) => {
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* buttonArea */
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+const buttonAreaClickHandler = (e) => {
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    const addButton = currentTarget.querySelector(".addButton");
+    const filterButton = currentTarget.querySelector(".filterButton");
+    const filterMenuElement = currentTarget.querySelector(".filterMenu");
+    const addMenuWrapperElement = document.querySelector("#addMenuWrapper");
+    const searchBarElement = currentTarget.querySelector(".searchBar");
+    const searchDeleteIconElement = currentTarget.querySelector(".searchDeleteIcon");
+
+    if (addButton.contains(target)) {
+        e.stopImmediatePropagation();
+        showBookEntryMenu(addMenuWrapperElement);
+        return;
+    }
+
+    if (filterButton.contains(target)) {
+        e.stopImmediatePropagation();
+        if (filterMenuElement.classList.contains("show")) {
+            hideAllMenuInterfaces();
+        } else {
+            showFilterMenu(filterMenuElement);
+        }
+        return;
+    }
+
+    if (searchDeleteIconElement.contains(target)) {
+        searchBarElement.value = "";
+        removeClass(searchDeleteIconElement, ["activated"]);
+        searchBarElement.focus();
+        return;
+    }
+};
+
+const buttonAreaOnInputHandler = (e) => {
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    const searchBarElement = currentTarget.querySelector(".searchBar");
+    const searchDeleteIconElement = currentTarget.querySelector(".searchDeleteIcon");
+
+    if (searchBarElement.contains(target)) {
+        if (searchBarElement.value) {
+            addClass(searchDeleteIconElement, ["activated"]);
+        } else {
+            removeClass(searchDeleteIconElement, ["activated"]);
+        }
+        setSearchQueryRestrictionObj(searchBarElement);
+    }
+};
+
+const showFilterMenu = (filterMenuElement) => {
+    const ancestorElementCSS = document.querySelector("header").contains(filterMenuElement) ? "header" : "footer";
+    hideAllMenuInterfaces();
+    updateAncestorZIndex(filterMenuElement, ancestorElementCSS, 100);
+    addClass(filterMenuElement, ["show"]);
+    hideMenuByOutsideClick(filterMenuElement, hideAllMenuInterfaces);
+    filterMenuElement.addEventListener("click", filterMenuClickableOptionsHandler);
+    loadFilterMenu(filterMenuElement);
+};
+
+const loadFilterMenu = (filterMenuElement) => {
+    const AllCheckboxElement = filterMenuElement.querySelector(".filterAllContainer .filterCheckbox");
+    const wantToReadCheckboxElement = filterMenuElement.querySelector(".filterWantToReadContainer .filterCheckbox");
+    const readCheckboxElement = filterMenuElement.querySelector(".filterReadContainer .filterCheckbox");
+    const readingCheckboxElement = filterMenuElement.querySelector(".filterReadingContainer .filterCheckbox");
+    const type = "filter";
+    const restrictionObj = user.currentSet.restrictionArr.find((obj) => {
+        return obj.type === type;
+    });
+    let wantToReadValue;
+    let readValue;
+    let readingValue;
+
+    if (restrictionObj) {
+        wantToReadValue = restrictionObj.testArr.find((obj) => {
+            return obj.filter === "wantToRead";
+        }).value;
+        readValue = restrictionObj.testArr.find((obj) => {
+            return obj.filter === "read";
+        }).value;
+        readingValue = restrictionObj.testArr.find((obj) => {
+            return obj.filter === "reading";
+        }).value;
+
+        AllCheckboxElement.checked = false;
+        wantToReadCheckboxElement.checked = wantToReadValue;
+        readCheckboxElement.checked = readValue;
+        readingCheckboxElement.checked = readingValue;
+    } else {
+        [AllCheckboxElement, wantToReadCheckboxElement, readCheckboxElement, readingCheckboxElement].forEach(
+            (filterCheckboxElement) => {
+                filterCheckboxElement.checked = true;
+            }
+        );
+    }
+};
+
+const filterMenuClickableOptionsHandler = (e) => {
+    const target = e.target;
+    const filterMenuElement = e.currentTarget;
+    const filterAllCheckbox = filterMenuElement.querySelector(".filterAllContainer .filterCheckbox");
+    const filterRegularCheckboxArr = Array.from(
+        filterMenuElement.querySelectorAll(".filterContainer:not(.filterAllContainer) .filterCheckbox")
+    );
+    const filterCancelButton = filterMenuElement.querySelector(".cancelButton");
+    const filterAcceptButton = filterMenuElement.querySelector(".acceptButton");
+
+    if (filterAllCheckbox.contains(target)) {
+        if (filterAllCheckbox.checked) {
+            filterRegularCheckboxArr.forEach((checkbox) => {
+                checkbox.checked = true;
+            });
+        }
+
+        if (
+            !filterAllCheckbox.checked &&
+            filterRegularCheckboxArr.every((checkbox) => {
+                return checkbox.checked;
+            })
+        ) {
+            filterRegularCheckboxArr.forEach((checkbox) => {
+                checkbox.checked = false;
+            });
+        }
+        return;
+    }
+
+    if (
+        filterRegularCheckboxArr.some((checkbox) => {
+            return checkbox.contains(target);
+        })
+    ) {
+        if (
+            !filterAllCheckbox.checked &&
+            filterRegularCheckboxArr.every((checkbox) => {
+                return checkbox.checked;
+            })
+        ) {
+            filterAllCheckbox.checked = true;
+        }
+
+        if (
+            filterAllCheckbox.checked &&
+            !filterRegularCheckboxArr.every((checkbox) => {
+                return checkbox.checked;
+            })
+        ) {
+            filterAllCheckbox.checked = false;
+        }
+        return;
+    }
+
+    if (filterCancelButton.contains(target)) {
+        e.stopImmediatePropagation();
+        hideAllMenuInterfaces();
+        return;
+    }
+
+    if (filterAcceptButton.contains(target)) {
+        setFilterRestrictionObj(filterMenuElement);
+        hideAllMenuInterfaces();
+        return;
+    }
+};
+
+const getFilterRestrictionObj = (filterMenuElement) => {
+    const type = "filter";
+    const wantToRead = {
+        filter: "wantToRead",
+        value: filterMenuElement.querySelector(".filterWantToReadContainer .filterCheckbox").checked,
+    };
+    const read = {
+        filter: "read",
+        value: filterMenuElement.querySelector(".filterReadContainer .filterCheckbox").checked,
+    };
+    const reading = {
+        filter: "reading",
+        value: filterMenuElement.querySelector(".filterReadingContainer .filterCheckbox").checked,
+    };
+
+    return new Restriction(type, filterTestHandler, [wantToRead, read, reading]);
+};
+
+const setFilterRestrictionObj = (filterMenuElement) => {
+    const type = "filter";
+    const destinationArr = user.currentSet.restrictionArr;
+    const restrictionObj = getFilterRestrictionObj(filterMenuElement);
+    const isAllChecked = restrictionObj.testArr.every((item) => {
+        return item.value;
+    });
+
+    if (isAllChecked) {
+        deleteRestriction(type, destinationArr);
+    } else {
+        setRestriction(restrictionObj, destinationArr);
+    }
+};
+
+const filterTestHandler = () => {};
+
+const getSearchQueryRestrictionObj = (searchBarElement) => {
+    const searchText = searchBarElement.value;
+    const type = "searchQuery";
+
+    return new Restriction(type, searchQueryTestHandler, [{ searchQuery: searchText }]);
+};
+
+const setSearchQueryRestrictionObj = (searchBarElement) => {
+    const type = "searchQuery";
+    const destinationArr = user.currentSet.restrictionArr;
+    const restrictionObj = getSearchQueryRestrictionObj(searchBarElement);
+    const isNotEmpty = restrictionObj.testArr[0].searchQuery.length;
+
+    if (isNotEmpty) {
+        setRestriction(restrictionObj, destinationArr);
+    } else {
+        deleteRestriction(type, destinationArr);
+    }
+};
+
+const searchQueryTestHandler = () => {};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
