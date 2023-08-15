@@ -361,3 +361,41 @@ const updateBookCard = (DropDownMenuElement) => {
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* DropDownMenu */
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+const bookEntryMenuDropDownMenuHandler = (target) => {
+    const bookStateDropdownContainer = target.closest(".bookStateDropdownContainer");
+    const activationElement = bookStateDropdownContainer.querySelector(".dropdownBaseContainer");
+    const clickableAreaElement = bookStateDropdownContainer.querySelector(".stateOptionContainer");
+    const baseMenuElement = bookStateDropdownContainer.closest(".menuWrapper");
+
+    /* Activación del menu */
+    if (activationElement.contains(target) && !activationElement.classList.contains("show")) {
+        hideAllMenuInterfaces([baseMenuElement]);
+        addClass(bookStateDropdownContainer, ["show"]);
+        updateDropDownMenuText(bookStateDropdownContainer);
+        updateAncestorZIndex(bookStateDropdownContainer, ".menuBookStateContainer", "100");
+        updateAncestorZIndex(bookStateDropdownContainer, ".bookStateDropdownContainer", "100");
+        hideMenuByOutsideClick(bookStateDropdownContainer, hideAllMenuInterfaces, [baseMenuElement]);
+    }
+
+    /* Configurar el click en stateOption */
+    if (clickableAreaElement.contains(target)) {
+        const closestOption = target.closest(".stateOption");
+        const dataValue = closestOption.getAttribute("data-value");
+        const inputElement = bookStateDropdownContainer.closest(".menuInputWrapper").querySelector(".menuInputBar");
+
+        body.removeEventListener("click", hideMenuByOutsideClickHandler);
+        bookStateDropdownContainer.setAttribute("data-value", dataValue);
+        inputElement.value = dataValue;
+        activateTextInput(inputElement);
+        removeClass(bookStateDropdownContainer, ["show"]);
+        updateDropDownMenuText(bookStateDropdownContainer);
+        updateAncestorZIndex(bookStateDropdownContainer, ".menuBookStateContainer", "auto");
+        updateAncestorZIndex(bookStateDropdownContainer, ".bookStateDropdownContainer", "auto");
+    }
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
