@@ -956,3 +956,20 @@ const updateIndicator = () => {
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* Utilidades */
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+const printAllEventListener = () => {
+    let elementArr = Array.from(document.querySelectorAll("body, body *"));
+
+    return elementArr.reduce((result, element) => {
+        if (Object.keys(getEventListeners(element)).length > 0) {
+            result.push({ eventListeners: getEventListeners(element), element: element });
+        }
+
+        return result;
+    }, []);
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
