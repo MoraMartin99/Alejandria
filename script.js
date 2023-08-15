@@ -973,3 +973,16 @@ const printAllEventListener = () => {
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* Inicio en carga inicial de la página */
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+buttonAreaArr.forEach((item) => {
+    item.addEventListener("click", buttonAreaClickHandler);
+    item.addEventListener("input", buttonAreaOnInputHandler);
+});
+
+main.addEventListener("click", mainClickHandler);
+
+updateIndicator();
+
+/* ----------------------------------------------------------------------------------------------------------------- */
