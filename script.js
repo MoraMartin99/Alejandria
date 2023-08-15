@@ -932,3 +932,27 @@ const searchQueryTestHandler = () => {};
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* indicator */
+/* ----------------------------------------------------------------------------------------------------------------- */
+
+const updateIndicator = () => {
+    const wantToReadContainerValueTextElement = document.querySelector(".wantToReadContainer .valueText");
+    const readingContainerValueTextElement = document.querySelector(".readingContainer .valueText");
+    const readContainerValueTextElement = document.querySelector(".readContainer .valueText");
+    const wantToReadValueText = Array.from(
+        document.querySelectorAll(`main .bookStateDropdownContainer[data-value="wantToRead"]`)
+    ).length;
+    const readingValueText = Array.from(
+        document.querySelectorAll(`main .bookStateDropdownContainer[data-value="reading"]`)
+    ).length;
+    const readValueText = Array.from(
+        document.querySelectorAll(`main .bookStateDropdownContainer[data-value="read"]`)
+    ).length;
+
+    wantToReadContainerValueTextElement.innerText = wantToReadValueText;
+    readingContainerValueTextElement.innerText = readingValueText;
+    readContainerValueTextElement.innerText = readValueText;
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
