@@ -273,3 +273,91 @@ const getRandomHue = (exceptionHueArr = undefined, tolerance = 1) => {
 
 /* ----------------------------------------------------------------------------------------------------------------- */
 
+/* main */
+/* ----------------------------------------------------------------------------------------------------------------- */
+const mainClickHandler = (e) => {
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    const editMenuWrapperElement = document.querySelector("#editMenuWrapper");
+    const bookCardElement = target.closest(".bookCard");
+    let bookCardSelectedElement;
+
+    /* click en bookStateDropdownContainer */
+    if (target.matches(".bookStateDropdownContainer, .bookStateDropdownContainer *")) {
+        bookCardDropDownMenuHandler(target);
+        return;
+    }
+
+    /* click en editButton */
+    if (target.matches(".editButton, .editButton *")) {
+        addClass(bookCardElement, ["selected"]);
+        bookCardSelectedElement = document.querySelector(".bookCard.selected");
+        showBookEntryMenu(editMenuWrapperElement);
+        loadBookEntryMenu(editMenuWrapperElement, bookCardSelectedElement);
+        return;
+    }
+};
+
+const bookCardDropDownMenuHandler = (target) => {
+    const bookStateDropdownContainer = target.closest(".bookStateDropdownContainer");
+    const activationElement = bookStateDropdownContainer.querySelector(".dropdownBaseContainer");
+    const clickableAreaElement = bookStateDropdownContainer.querySelector(".stateOptionContainer");
+    const bookCardElement = target.closest(".bookCard");
+    const id = bookCardElement.id;
+    const bookObj = user.bookArr.find((item) => {
+        return item.id === id;
+    });
+
+    /* Activación del menu */
+    if (activationElement.contains(target) && !activationElement.classList.contains("show")) {
+        hideAllMenuInterfaces();
+        addClass(bookStateDropdownContainer, ["show"]);
+        updateBookCard(bookStateDropdownContainer);
+        hideMenuByOutsideClick(bookStateDropdownContainer, hideAllMenuInterfaces);
+    }
+
+    /* Configurar el click en stateOption */
+    if (clickableAreaElement.contains(target)) {
+        const closestOption = target.closest(".stateOption");
+        const dataValue = closestOption.getAttribute("data-value");
+
+        body.removeEventListener("click", hideMenuByOutsideClickHandler);
+        bookStateDropdownContainer.setAttribute("data-value", dataValue);
+        removeClass(bookStateDropdownContainer, ["show"]);
+        updateBookCard(bookStateDropdownContainer);
+        bookObj.state = dataValue;
+    }
+};
+
+const updateDropDownMenuText = (DropDownMenuElement) => {
+    const optionTextValue = {
+        wantToRead: { value: "Quiero leer", class: "wantToRead" },
+        read: { value: "Leído", class: "read" },
+        reading: { value: "Leyendo", class: "reading" },
+        default: { value: "Seleccionar" },
+    };
+    const optionTextElement = DropDownMenuElement.querySelector(".optionText");
+    const DropDownMenuDataValue = DropDownMenuElement.getAttribute("data-value");
+
+    if (!DropDownMenuDataValue || DropDownMenuElement.matches(".show")) {
+        optionTextElement.textContent = optionTextValue.default.value;
+        return;
+    }
+    optionTextElement.textContent = optionTextValue[DropDownMenuDataValue].value;
+};
+
+const updateBookCard = (DropDownMenuElement) => {
+    const newZIndex = "100";
+    const ancestorCSSSelector = ".bookCard";
+
+    updateDropDownMenuText(DropDownMenuElement);
+    if (DropDownMenuElement.matches(".show")) {
+        updateAncestorZIndex(DropDownMenuElement, ancestorCSSSelector, newZIndex);
+    } else {
+        updateAncestorZIndex(DropDownMenuElement, ancestorCSSSelector, "auto");
+        updateIndicator();
+    }
+};
+
+/* ----------------------------------------------------------------------------------------------------------------- */
+
