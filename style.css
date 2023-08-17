@@ -65,8 +65,8 @@ html {
     --homeIconSize: calc(40em / 20);
     --indicatorContainerWidth: calc(255em / 13);
     --indicatorContainerBorderWidth: calc(1em / 13);
-    --searchBarWidth: clamp(200px, 46.428571428571445px + 47.99107142857142vw, 415px);
-    --menuButtonSize: clamp(1.5625rem, 0.7495535714285715rem + 4.064732142857143vw, 2.700625rem);
+    --searchBarWidth: clamp(224px, 49.7143px + 54.46428571428571vw, 468px);
+    --menuButtonSize: clamp(1.875rem, 0.9375rem + 4.6875vw, 3.1875rem);
     --searchBarBorderWidth: clamp(1px, 0.4796499999999999px + 0.16260937500000003vw, 1.72849px);
     --bookCardBaseWidth: clamp(17.5rem, 15.089285714285715rem + 12.053571428571427vw, 20.875rem);
     --footerGithubIconSize: calc(1em * (25 / 18));
@@ -191,7 +191,7 @@ html {
     /* -------------------------------------------------------- */
 
     --indicatorContainerBorderRadius: calc(3em / 13);
-    --searchBarBorderRadius: clamp(10px, 4.8px + 1.625vw, 17.28px);
+    --searchBarBorderRadius: var(--menuButtonSize);
     --bookCardBorderRadiusHorizontal: calc(100% * (10 / 280));
     --bookCardBorderRadiusVertical: calc(100% * (10 / 140));
     --cancelAcceptButtonBorderRadius: calc(1em * (5 / 14));
@@ -412,6 +412,7 @@ header {
 }
 
 .searchBar {
+    background-color: var(--colorBase5);
     padding-inline: var(--searchBarLeftPadding) var(--searchBarRightPadding);
     display: flex;
     align-items: center;
@@ -429,11 +430,6 @@ header {
     width: var(--menuButtonSize);
     height: var(--menuButtonSize);
     background-color: transparent;
-}
-
-.searchButton {
-    background-image: url("./Img/search.svg");
-    background-size: 100%;
 }
 
 .addButton {
@@ -1140,8 +1136,8 @@ input::-webkit-inner-spin-button {
         /* ------------------------------------------------ */
 
         --githubHeaderIconSize: clamp(50px, -7.450000000000017px + 7.480468750000002vw, 69.15px);
-        --searchBarWidth: clamp(415px, -61.83500000000015px + 62.08789062500002vw, 573.945px);
-        --menuButtonSize: clamp(2.70104375rem, -0.4024555187499992rem + 6.465623476562499vw, 3.73554350625rem);
+        --searchBarWidth: clamp(468px, 0rem + 60.9375vw, 624px);
+        --menuButtonSize: clamp(3.1875rem, 0rem + 6.640625vw, 4.25rem);
         --searchBarBorderWidth: clamp(1.728px, -0.2574719999999999px + 0.258525vw, 2.389824px);
 
         /* ------------------------------------------------ */
@@ -1187,7 +1183,7 @@ input::-webkit-inner-spin-button {
         /* Radius */
         /* ------------------------------------------------ */
 
-        --searchBarBorderRadius: clamp(17.28px, -2.5747199999999992px + 2.5852500000000003vw, 23.89824px);
+        --searchBarBorderRadius: var(--menuButtonSize);
 
         /* ------------------------------------------------ */
     }
@@ -1271,7 +1267,7 @@ input::-webkit-inner-spin-button {
 
         --footerMinHeight: 6.25rem;
         --headerHeight: calc(100vh - var(--footerMinHeight));
-        --searchBarWidth: 240px;
+        --searchBarWidth: 280px;
         --menuButtonSize: 1.875rem;
         --searchBarBorderWidth: 1.041px;
         --menuButtonIconSize: calc(1em * (15 / 20));
@@ -1324,7 +1320,7 @@ input::-webkit-inner-spin-button {
         /* Radius */
         /* ------------------------------------------------ */
 
-        --searchBarBorderRadius: 10.41px;
+        --searchBarBorderRadius: var(--menuButtonSize);
         --indicatorContainerBorderRadius: calc(1em * (20 / 26));
 
         /* ------------------------------------------------ */
@@ -1577,7 +1573,7 @@ input::-webkit-inner-spin-button {
         /* ------------------------------------------------ */
 
         --indicatorContainerReferenceHeight: clamp(10.625rem, -1.25rem + 14.84375vw, 16.5625rem);
-        --searchBarWidth: clamp(240px, 0px + 18.75vw, 360px);
+        --searchBarWidth: clamp(280px, 0rem + 21.875vw, 420px);
         --menuButtonSize: clamp(1.875rem, 0rem + 2.34375vw, 2.8125rem);
         --searchBarBorderWidth: clamp(1.041px, -0.001px + 0.08140625000000003vw, 1.562px);
         --bookCardBaseWidth: clamp(17.916875rem, 1.250625000000003rem + 20.832812499999996vw, 26.25rem);
@@ -1611,7 +1607,7 @@ input::-webkit-inner-spin-button {
         /* radius */
         /* ------------------------------------------------ */
 
-        --searchBarBorderRadius: clamp(10.41px, -0.00999999999999801px + 0.8140624999999999vw, 15.62px);
+        --searchBarBorderRadius: var(--menuButtonSize);
 
         /* ------------------------------------------------ */
     }
