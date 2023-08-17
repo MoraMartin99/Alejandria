@@ -1172,7 +1172,7 @@ input::-webkit-inner-spin-button {
 
         --homepaddingTop: clamp(0.84375rem, -0.1257187500000001rem + 2.0197265625000003vw, 1.16690625rem);
         --searchBarLeftPadding: calc(1em * (20.283 / 24.2));
-        --footerPaddingBlock: clamp(20px, -0.25758375000000006px + 2.9921875vw, 27.66px);
+        --footerPaddingBlock: clamp(16.11px, 0rem + 2.0976562500000004vw, 21.48px);
 
         /* ------------------------------------------------ */
 
