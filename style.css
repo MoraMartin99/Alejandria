@@ -1276,10 +1276,7 @@ input::-webkit-inner-spin-button {
         --searchBarBorderWidth: 1.041px;
         --menuButtonIconSize: calc(1em * (15 / 20));
         --bookCardBaseWidth: 19.5rem;
-        --asideWidth: calc(
-            var(--searchBarWidth) + var(--menuButtonSize) + var(--searchContainerColumnGap) +
-                var(--buttonAreaPaddingInline) * 2
-        );
+        --asideWidth: calc(var(--searchBarWidth) + var(--buttonAreaPaddingInline) * 2);
         --indicatorContainerWidth: 0px;
         --fieldContainerIconSize: calc(1em * (23 / 26));
         --indicatorContainerReferenceHeight: 10.625rem;
