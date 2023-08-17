@@ -1148,8 +1148,12 @@ input::-webkit-inner-spin-button {
         --homeTitleFontSize: clamp(2.294375rem, -0.3418618750000002rem + 5.492160156250001vw, 3.173120625rem);
         --indicatorStatFontSize: clamp(1.49125rem, -0.22219624999999965rem + 3.569679687499999vw, 2.06239875rem);
         --searchBarFontSize: clamp(1.5125rem, -0.22536250000000058rem + 3.620546875000001vw, 2.0917875rem);
-        --bookEntryMenuFontSize: clamp(1.339375rem, 2.009375rem + -1.046875vw, 1.506875rem);
-        --filterMenuFontSize: clamp(1.25rem, 1.875rem + -0.9765625vw, 1.40625rem);
+        --bookEntryMenuFontSize: clamp(
+            1.506875rem,
+            -6.250004958019417e-10rem + 3.1393229179687507vw,
+            2.009166666875rem
+        );
+        --filterMenuFontSize: clamp(1.40625rem, 0rem + 2.9296875vw, 1.875rem);
 
         /* ------------------------------------------------ */
 
@@ -1259,6 +1263,8 @@ input::-webkit-inner-spin-button {
         --buttonTextFontSize: 1.25rem;
         --indicatorStatFontSize: 1.625rem;
         --valueTextFontSize: calc(1em * (35 / 26));
+        --filterMenuFontSize: 1.25rem;
+        --bookEntryMenuFontSize: 1.339375rem;
 
         /* ------------------------------------------------ */
 
