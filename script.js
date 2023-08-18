@@ -893,6 +893,7 @@ const getFilterRestrictionObj = (filterMenuElement) => {
 
 const setFilterRestrictionObj = (filterMenuElement) => {
     const type = "filter";
+    const filterButtonArr = Array.from(document.querySelectorAll(".filterButton"));
     const destinationArr = user.currentSet.restrictionArr;
     const restrictionObj = getFilterRestrictionObj(filterMenuElement);
     const isAllChecked = restrictionObj.testArr.every((item) => {
@@ -901,8 +902,14 @@ const setFilterRestrictionObj = (filterMenuElement) => {
 
     if (isAllChecked) {
         deleteRestriction(type, destinationArr);
+        filterButtonArr.forEach((filterButton) => {
+            removeClass(filterButton, ["on"]);
+        });
     } else {
         setRestriction(restrictionObj, destinationArr);
+        filterButtonArr.forEach((filterButton) => {
+            addClass(filterButton, ["on"]);
+        });
     }
 };
 

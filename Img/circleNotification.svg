@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="12"
+   height="11.61"
+   id="screenshot-5ccf8240-ddd1-808f-8002-b345677e23d1"
+   viewBox="0 0 12 11.61"
+   style="-webkit-print-color-adjust: exact;"
+   fill="none"
+   version="1.1"
+   sodipodi:docname="circleNotification.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="42.549528"
+     inkscape:cx="5.993016"
+     inkscape:cy="5.8049998"
+     inkscape:window-width="1366"
+     inkscape:window-height="698"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="screenshot-5ccf8240-ddd1-808f-8002-b345677e23d1" />
+  <g
+     id="shape-5ccf8240-ddd1-808f-8002-b345677e23d1"
+     rx="0"
+     ry="0"
+     style="fill: rgb(0, 0, 0);">
+    <g
+       id="shape-5ccf8240-ddd1-808f-8002-b345677e23d3">
+      <g
+         class="fills"
+         id="fills-5ccf8240-ddd1-808f-8002-b345677e23d3">
+        <path
+           rx="0"
+           ry="0"
+           d="M6.000,10.643C8.761,10.643,11.000,8.477,11.000,5.805C11.000,3.133,8.761,0.968,6.000,0.968C3.239,0.968,1.000,3.133,1.000,5.805C1.000,8.477,3.239,10.643,6.000,10.643ZZ"
+           style="fill:#0bb6ff;fill-opacity:1"
+           id="path1" />
+      </g>
+    </g>
+  </g>
+</svg>

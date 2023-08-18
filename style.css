@@ -96,6 +96,7 @@ html {
     --deleteButtonUnderlineHeight: calc(1em * (1 / 15));
     --deleteMenuBorderWidth: calc(1em * (1 / 15));
     --searchDeleteIconSize: calc(var(--menuButtonSize) * 0.5);
+    --filterNotificationIconSize: calc(100% * (12.5 / 30));
 
     /* -------------------------------------------------------- */
 
@@ -184,6 +185,8 @@ html {
     --searchDeleteIconLeft: calc(
         var(--searchBarWidth) - var(--searchDeleteIconSize) - (var(--searchBarLeftPadding) / 2)
     );
+    --filterNotificationIconRight: 0px;
+    --filterNotificationIconTop: 0px;
 
     /* -------------------------------------------------------- */
 
@@ -446,7 +449,24 @@ header {
 .filterButton {
     background-image: url("./Img/filter.svg");
     background-size: 100%;
+    position: relative;
 }
+
+.filterNotificationIcon {
+    display: none;
+}
+
+.on .filterNotificationIcon {
+    display: block;
+    position: absolute;
+    width: var(--filterNotificationIconSize);
+    height: var(--filterNotificationIconSize);
+    background-image: url("./Img/circleNotification.svg");
+    background-size: 100%;
+    right: var(--filterNotificationIconRight);
+    top: var(--filterNotificationIconTop);
+}
+
 /* -------------------------------------------------------------------------------------------------------------- */
 
 /* Main */
@@ -1276,7 +1296,7 @@ input::-webkit-inner-spin-button {
         --searchBarWidth: 280px;
         --menuButtonSize: 1.875rem;
         --searchBarBorderWidth: 1.041px;
-        --menuButtonIconSize: calc(1em * (15 / 20));
+        --menuButtonIconSize: var(--menuButtonSize);
         --bookCardBaseWidth: 19.5rem;
         --asideWidth: calc(var(--searchBarWidth) + var(--buttonAreaPaddingInline) * 2);
         --indicatorContainerWidth: 0px;
@@ -1286,6 +1306,7 @@ input::-webkit-inner-spin-button {
             0px,
             calc(50vh - var(--footerMinHeight) - var(--headerRowGap) - (var(--indicatorContainerReferenceHeight) / 2))
         );
+        --filterNotificationIconSize: calc(1em * (12.5 / 20));
 
         /* ------------------------------------------------ */
 
@@ -1338,6 +1359,8 @@ input::-webkit-inner-spin-button {
         --filterMenuBottom: initial;
         --filterMenuTop: calc(100% + var(--headerRowGap));
         --filterMenuRight: 50%;
+        --filterNotificationIconRight: initial;
+        --filterNotificationIconLeft: calc(var(--menuButtonIconSize) - var(--filterNotificationIconSize));
 
         /* ------------------------------------------------ */
     }
@@ -1422,6 +1445,11 @@ input::-webkit-inner-spin-button {
 
     .filterButton::before {
         background-image: url("./Img/filter.svg");
+    }
+
+    .on .filterNotificationIcon {
+        font-size: inherit;
+        left: var(--filterNotificationIconLeft);
     }
 
     .addButton::before {
