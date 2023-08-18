@@ -199,7 +199,7 @@ html {
     --bookCardBorderRadiusVertical: calc(100% * (10 / 140));
     --cancelAcceptButtonBorderRadius: calc(1em * (5 / 14));
     --filterMenuBorderRadius: calc(1em * (10 / 14));
-    --menuInputBarBorderRadius: calc(1em * (10 / 14));
+    --menuInputBarBorderRadius: var(--menuInputBarHeight);
     --bookEntryMenuBorderRadius: calc(1em * (10 / 15));
     --deleteMenuBorderRadius: calc(1em * (10 / 15));
 
