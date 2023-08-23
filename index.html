@@ -82,14 +82,89 @@
                 <span class="buttonText hide">Agregar</span>
             </button>
         </div>
+        <aside>
+            <header>
+                <a href="" id="home">
+                    <p id="homeTitle">Alejandría</p>
+                </a>
+                <div class="buttonArea">
+                    <div class="searchContainer">
+                        <input placeholder="Busca en tu librería" type="search" class="searchBar" />
+                        <span class="searchDeleteIcon"></span>
+                    </div>
+                    <div class="filterButtonWrapper">
+                        <button class="filterButton menuButton">
+                            <span class="filterNotificationIcon"></span>
+                            <span class="buttonText hide">Filtrar</span>
+                        </button>
+                        <div class="filterMenu">
+                            <div class="filterContainer filterTitleContainer">
+                                <p class="filterText">Filtro</p>
+                            </div>
+                            <div class="filterContainer filterAllContainer">
+                                <input checked type="checkbox" class="filterCheckbox" id="asideFilterAllCheckbox" />
+                                <label for="asideFilterAllCheckbox" class="filterText">Todos</label>
+                            </div>
+                            <div class="filterContainer filterWantToReadContainer">
+                                <input
+                                    checked
+                                    type="checkbox"
+                                    class="filterCheckbox"
+                                    id="asideFilterWantToReadCheckbox"
+                                />
+                                <label for="asideFilterWantToReadCheckbox" class="filterText">Quiero leer</label>
+                            </div>
+                            <div class="filterContainer filterReadContainer">
+                                <input checked type="checkbox" class="filterCheckbox" id="asideFilterReadCheckbox" />
+                                <label for="asideFilterReadCheckbox" class="filterText">Leído</label>
+                            </div>
+                            <div class="filterContainer filterReadingContainer">
+                                <input checked type="checkbox" class="filterCheckbox" id="asideFilterReadingCheckbox" />
+                                <label for="asideFilterReadingCheckbox" class="filterText">Leyendo</label>
+                            </div>
+                            <div class="filterButtonContainer">
+                                <button class="cancelAcceptButton cancelButton">Cancelar</button>
+                                <button class="cancelAcceptButton acceptButton">Aceptar</button>
+                            </div>
                         </div>
                     </div>
+                    <button class="addButton menuButton">
+                        <span class="buttonText hide">Agregar</span>
+                    </button>
                 </div>
-                <button class="addButton menuButton">
-                    <span class="buttonText hide">Agregar</span>
-                </button>
+            </header>
+            <div class="indicatorContainer">
+                <div class="statContainer readContainer">
+                    <div class="fieldContainer">
+                        <p class="fieldText">Leído</p>
+                    </div>
+                    <div class="valueContainer">
+                        <p class="valueText"></p>
+                    </div>
+                </div>
+                <div class="statContainer readingContainer">
+                    <div class="fieldContainer">
+                        <p class="fieldText">Leyendo</p>
+                    </div>
+                    <div class="valueContainer">
+                        <p class="valueText"></p>
+                    </div>
+                </div>
+                <div class="statContainer wantToReadContainer">
+                    <div class="fieldContainer">
+                        <p class="fieldText">Quiero leer</p>
+                    </div>
+                    <div class="valueContainer">
+                        <p class="valueText"></p>
+                    </div>
+                </div>
             </div>
-        </header>
+            <footer>
+                <a target="_blank" href="https://github.com/MoraMartin99/Alejandria" id="github">
+                    <p id="githubTitle">Github</p>
+                </a>
+            </footer>
+        </aside>
         <main></main>
         <footer>
             <a target="_blank" href="https://github.com/MoraMartin99/Alejandria" id="github">
