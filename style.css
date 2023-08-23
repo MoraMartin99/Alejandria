@@ -293,7 +293,7 @@ header {
     font-weight: 500;
 }
 
-#indicatorContainer {
+.indicatorContainer {
     border: var(--indicatorContainerBorderWidth) solid var(--colorPrimario1);
     border-radius: var(--indicatorContainerBorderRadius);
     min-width: var(--indicatorContainerWidth);
