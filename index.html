@@ -41,39 +41,47 @@
                     </div>
                 </div>
             </div>
-            <div class="buttonArea">
-                <div class="searchContainer">
-                    <input placeholder="Busca en tu librería" type="search" class="searchBar" />
-                    <span class="searchDeleteIcon"></span>
+        </header>
+        <div class="buttonArea">
+            <div class="searchContainer">
+                <input placeholder="Busca en tu librería" type="search" class="searchBar" />
+                <span class="searchDeleteIcon"></span>
+            </div>
+            <div class="filterButtonWrapper">
+                <button class="filterButton menuButton">
+                    <span class="filterNotificationIcon"></span>
+                    <span class="buttonText hide">Filtrar</span>
+                </button>
+                <div class="filterMenu">
+                    <div class="filterContainer filterTitleContainer">
+                        <p class="filterText">Filtro</p>
+                    </div>
+                    <div class="filterContainer filterAllContainer">
+                        <input checked type="checkbox" class="filterCheckbox" id="headerFilterAllCheckbox" />
+                        <label for="headerFilterAllCheckbox" class="filterText">Todos</label>
+                    </div>
+                    <div class="filterContainer filterWantToReadContainer">
+                        <input checked type="checkbox" class="filterCheckbox" id="headerFilterWantToReadCheckbox" />
+                        <label for="headerFilterWantToReadCheckbox" class="filterText">Quiero leer</label>
+                    </div>
+                    <div class="filterContainer filterReadContainer">
+                        <input checked type="checkbox" class="filterCheckbox" id="headerFilterReadCheckbox" />
+                        <label for="headerFilterReadCheckbox" class="filterText">Leído</label>
+                    </div>
+                    <div class="filterContainer filterReadingContainer">
+                        <input checked type="checkbox" class="filterCheckbox" id="headerFilterReadingCheckbox" />
+                        <label for="headerFilterReadingCheckbox" class="filterText">Leyendo</label>
+                    </div>
+                    <div class="filterButtonContainer">
+                        <button class="cancelAcceptButton cancelButton">Cancelar</button>
+                        <button class="cancelAcceptButton acceptButton">Aceptar</button>
+                    </div>
                 </div>
-                <div class="filterButtonWrapper">
-                    <button class="filterButton menuButton">
-                        <span class="filterNotificationIcon"></span>
-                        <span class="buttonText hide">Filtrar</span>
-                    </button>
-                    <div class="filterMenu">
-                        <div class="filterContainer filterTitleContainer">
-                            <p class="filterText">Filtro</p>
-                        </div>
-                        <div class="filterContainer filterAllContainer">
-                            <input checked type="checkbox" class="filterCheckbox" id="headerFilterAllCheckbox" />
-                            <label for="headerFilterAllCheckbox" class="filterText">Todos</label>
-                        </div>
-                        <div class="filterContainer filterWantToReadContainer">
-                            <input checked type="checkbox" class="filterCheckbox" id="headerFilterWantToReadCheckbox" />
-                            <label for="headerFilterWantToReadCheckbox" class="filterText">Quiero leer</label>
-                        </div>
-                        <div class="filterContainer filterReadContainer">
-                            <input checked type="checkbox" class="filterCheckbox" id="headerFilterReadCheckbox" />
-                            <label for="headerFilterReadCheckbox" class="filterText">Leído</label>
-                        </div>
-                        <div class="filterContainer filterReadingContainer">
-                            <input checked type="checkbox" class="filterCheckbox" id="headerFilterReadingCheckbox" />
-                            <label for="headerFilterReadingCheckbox" class="filterText">Leyendo</label>
-                        </div>
-                        <div class="filterButtonContainer">
-                            <button class="cancelAcceptButton cancelButton">Cancelar</button>
-                            <button class="cancelAcceptButton acceptButton">Aceptar</button>
+            </div>
+            <button class="addButton menuButton">
+                <span class="buttonText hide">Agregar</span>
+            </button>
+        </div>
                         </div>
                     </div>
                 </div>
