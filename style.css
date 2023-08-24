@@ -1193,6 +1193,7 @@ input::-webkit-inner-spin-button {
         --searchBarWidth: clamp(468px, 0rem + 60.9375vw, 624px);
         --menuButtonSize: clamp(3.1875rem, 0rem + 6.640625vw, 4.25rem);
         --searchBarBorderWidth: clamp(1.728px, -0.2574719999999999px + 0.258525vw, 2.389824px);
+        --footerMinHeight: calc(var(--menuButtonSize) + (var(--footerPaddingBlock) * 2));
 
         /* ------------------------------------------------ */
 
@@ -1227,6 +1228,8 @@ input::-webkit-inner-spin-button {
         --homepaddingTop: clamp(0.84375rem, -0.1257187500000001rem + 2.0197265625000003vw, 1.16690625rem);
         --searchBarLeftPadding: calc(1em * (20.283 / 24.2));
         --footerPaddingBlock: clamp(16.11px, 0rem + 2.0976562500000004vw, 21.48px);
+        --buttonAreaPaddingTop: 0px;
+        --buttonAreaPaddingBottom: 0px;
 
         /* ------------------------------------------------ */
 
@@ -1244,6 +1247,10 @@ input::-webkit-inner-spin-button {
         --searchBarBorderRadius: var(--menuButtonSize);
 
         /* ------------------------------------------------ */
+    }
+
+    body {
+        grid-template-rows: repeat(2, max-content) 1fr var(--footerMinHeight);
     }
 
     /* ---------------------------------------------------- */
@@ -1274,7 +1281,10 @@ input::-webkit-inner-spin-button {
     /* footer */
     /* ---------------------------------------------------- */
     footer {
-        background-color: var(--colorBase3);
+        background: linear-gradient(var(--colorBase4Opacity), var(--colorBase4));
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
     }
 
     #github {
@@ -1283,6 +1293,7 @@ input::-webkit-inner-spin-button {
 
     footer .buttonArea {
         display: grid;
+        background-color: inherit;
     }
 
     /* ---------------------------------------------------- */
