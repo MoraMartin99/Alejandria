@@ -949,6 +949,22 @@ const setSearchQueryRestrictionObj = (searchBarElement) => {
 
 const searchQueryTestHandler = () => {};
 
+const setPinnedState = (element, windowWidth) => {
+    const options = { root: null, rootMargin: "0px", threshold: 1 };
+    const handler = (entries) => {
+        if (window.innerWidth <= windowWidth) {
+            const entryObj = entries[0];
+            const target = entryObj.target;
+            const ratio = entryObj.intersectionRatio;
+
+            target.classList.toggle("pinned", ratio < 1);
+        }
+    };
+    const observer = new IntersectionObserver(handler, options);
+
+    observer.observe(element);
+};
+
 /* ----------------------------------------------------------------------------------------------------------------- */
 
 /* indicator */
@@ -1003,5 +1019,7 @@ buttonAreaArr.forEach((item) => {
 main.addEventListener("click", mainClickHandler);
 
 updateIndicator();
+
+setPinnedState(mobileButtonArea, 768);
 
 /* ----------------------------------------------------------------------------------------------------------------- */
