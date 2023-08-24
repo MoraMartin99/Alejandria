@@ -98,6 +98,10 @@ const updateAncestorZIndex = (childElement, ancestorCSSSelector, newZIndex) => {
     ancestor.style.zIndex = newZIndex;
 };
 
+const updateElementZIndex = (element, newZIndex = "auto") => {
+    element.style.zIndex = newZIndex;
+};
+
 const hideAllMenuInterfaces = (exceptionElementArr = undefined) => {
     const CSSSelectorArr = [".show"];
     const resetBookCard = (bookStateDropdownContainerElement) => {
