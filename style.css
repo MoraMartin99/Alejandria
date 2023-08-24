@@ -265,15 +265,14 @@ aside {
 
 header {
     font-size: var(--homeTitleFontSize);
-    padding-block: var(--homepaddingTop);
+    padding-top: var(--homepaddingTop);
     grid-area: header;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: var(--homeIconSize) repeat(2, max-content);
+    grid-template-rows: var(--homeIconSize) max-content;
     grid-template-areas:
         "home"
-        "indicator"
-        "buttons";
+        "indicator";
     justify-items: center;
     align-items: center;
     row-gap: var(--headerRowGap);
@@ -404,11 +403,23 @@ header {
 }
 
 .buttonArea {
+    background-color: var(--colorBase1);
+    width: 100%;
+    padding-block: var(--buttonAreaPaddingTop) var(--buttonAreaPaddingBottom);
+    grid-area: buttonArea;
     display: grid;
     grid-template-columns: repeat(3, max-content);
     grid-template-rows: max-content;
     grid-template-areas: "search filter add";
     column-gap: var(--buttonAreaColumnGap);
+    position: sticky;
+    top: -1px;
+    z-index: 101;
+    justify-content: center;
+}
+
+.buttonArea.pinned {
+    background: linear-gradient(var(--colorBase4), var(--colorBase4Opacity));
 }
 
 .searchContainer {
@@ -898,6 +909,7 @@ footer {
     width: 100%;
     height: 100%;
     background-color: var(--colorOverlay1);
+    z-index: 102;
 }
 
 .bookEntryMenu {
