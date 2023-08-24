@@ -1337,7 +1337,6 @@ input::-webkit-inner-spin-button {
         /* ------------------------------------------------ */
 
         --footerMinHeight: 6.25rem;
-        --headerHeight: calc(100vh - var(--footerMinHeight));
         --searchBarWidth: 280px;
         --menuButtonSize: 1.875rem;
         --searchBarBorderWidth: 1.041px;
@@ -1346,11 +1345,6 @@ input::-webkit-inner-spin-button {
         --asideWidth: calc(var(--searchBarWidth) + var(--buttonAreaPaddingInline) * 2);
         --indicatorContainerWidth: 0px;
         --fieldContainerIconSize: calc(1em * (23 / 26));
-        --indicatorContainerReferenceHeight: 10.625rem;
-        --indicatorContainerRiserHeight: max(
-            0px,
-            calc(50vh - var(--footerMinHeight) - var(--headerRowGap) - (var(--indicatorContainerReferenceHeight) / 2))
-        );
         --filterNotificationIconSize: calc(1em * (12.5 / 20));
 
         /* ------------------------------------------------ */
@@ -1411,7 +1405,9 @@ input::-webkit-inner-spin-button {
     }
 
     #githubHeaderIcon,
-    footer .buttonArea {
+    body > header,
+    body > footer,
+    body > .buttonArea {
         display: none;
     }
 
@@ -1422,25 +1418,36 @@ input::-webkit-inner-spin-button {
     }
     /* ---------------------------------------------------- */
 
+    /* aside */
+    /* ---------------------------------------------------- */
+
+    aside {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: var(--asideWidth);
+        grid-template-rows: max-content 1fr max-content;
+        grid-template-areas:
+            "header"
+            "indicator"
+            "footer";
+        background-color: var(--colorBase2);
+        position: fixed;
+    }
+
+    /* ---------------------------------------------------- */
+
     /* header */
     /* ---------------------------------------------------- */
 
     header {
-        background-color: var(--colorBase2);
-        height: var(--headerHeight);
+        grid-area: header;
         padding-block: 0px;
         padding-top: var(--homepaddingTop);
-        grid-template-rows: var(--homeIconSize) max-content minmax(var(--indicatorContainerReferenceHeight), 1fr) var(
-                --indicatorContainerRiserHeight
-            );
+        grid-template-rows: var(--homeIconSize) max-content;
         grid-template-areas:
             "home"
-            "button"
-            "indicator"
-            ".";
-        position: fixed;
-        top: 0px;
-        left: 0px;
+            "button";
+        background-color: inherit;
     }
 
     .buttonArea {
@@ -1453,6 +1460,7 @@ input::-webkit-inner-spin-button {
             "search search"
             "add filter";
         row-gap: var(--buttonAreaRowGap);
+        background-color: inherit;
     }
 
     .searchContainer {
@@ -1509,6 +1517,7 @@ input::-webkit-inner-spin-button {
     }
 
     #indicatorContainer {
+        grid-area: indicator;
         background-color: var(--colorBase4);
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, max-content);
@@ -1520,7 +1529,8 @@ input::-webkit-inner-spin-button {
         padding-block: var(--indicatorContainerPaddingBlock);
         row-gap: var(--indicatorContainerRowGap);
         border: none;
-        align-self: end;
+        align-self: center;
+        justify-self: center;
     }
 
     .statContainer {
@@ -1588,12 +1598,11 @@ input::-webkit-inner-spin-button {
     /* ---------------------------------------------------- */
 
     footer {
-        background-color: var(--colorBase2);
-        width: var(--asideWidth);
+        background-color: inherit;
+        width: 100%;
         min-height: var(--footerMinHeight);
-        position: fixed;
-        bottom: 0px;
-        left: 0px;
+        position: static;
+        background: none;
     }
 
     #github {
