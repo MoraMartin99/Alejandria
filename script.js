@@ -108,9 +108,13 @@ const hideAllMenuInterfaces = (exceptionElementArr = undefined) => {
         updateBookCard(bookStateDropdownContainerElement);
     };
     const resetFilterMenu = (filterMenuElement) => {
-        const ancestorElementCSS = document.querySelector("header").contains(filterMenuElement) ? "header" : "footer";
         filterMenuElement.removeEventListener("click", filterMenuClickableOptionsHandler);
-        updateAncestorZIndex(filterMenuElement, ancestorElementCSS, "auto");
+
+        if (window.innerWidth >= 1024) {
+            const ancestorElement = filterMenuElement.closest("body > *");
+
+            updateElementZIndex(ancestorElement);
+        }
     };
 
     const resetBookEntryMenuBookStateDropdown = (bookStateDropdownContainerElement) => {
@@ -127,7 +131,7 @@ const hideAllMenuInterfaces = (exceptionElementArr = undefined) => {
         } else {
             menuWrapperElement.removeEventListener("click", menuWrapperClickHandler);
             menuWrapperElement.removeEventListener("focusout", menuWrapperFocusoutHandler);
-            body.style.overflow = "initial";
+            body.style.overflow = "scroll";
 
             bookCardSelectedArr.forEach((item) => {
                 removeClass(item, ["selected"]);
