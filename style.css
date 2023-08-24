@@ -1660,7 +1660,6 @@ input::-webkit-inner-spin-button {
         /* Size */
         /* ------------------------------------------------ */
 
-        --indicatorContainerReferenceHeight: clamp(10.625rem, -1.25rem + 14.84375vw, 16.5625rem);
         --searchBarWidth: clamp(280px, 0rem + 21.875vw, 420px);
         --menuButtonSize: clamp(1.875rem, 0rem + 2.34375vw, 2.8125rem);
         --searchBarBorderWidth: clamp(1.041px, -0.001px + 0.08140625000000003vw, 1.562px);
@@ -1689,6 +1688,7 @@ input::-webkit-inner-spin-button {
         --buttonAreaRowGap: clamp(15px, -15px + 2.34375vw, 30px);
         --searchContainerColumnGap: clamp(10px, 0px + 0.78125vw, 15px);
         --mainGap: clamp(20px, 0px + 1.5625vw, 30px);
+        --bookEntryMenuColumnGap:clamp(15px, -0.020000000000004903px + 1.1734375000000004vw, 22.51px);
 
         /* ------------------------------------------------ */
 
