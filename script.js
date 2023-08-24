@@ -971,9 +971,11 @@ const setPinnedState = (element, windowWidth) => {
 /* ----------------------------------------------------------------------------------------------------------------- */
 
 const updateIndicator = () => {
-    const wantToReadContainerValueTextElement = document.querySelector(".wantToReadContainer .valueText");
-    const readingContainerValueTextElement = document.querySelector(".readingContainer .valueText");
-    const readContainerValueTextElement = document.querySelector(".readContainer .valueText");
+    const wantToReadContainerValueTextElementArr = Array.from(
+        document.querySelectorAll(".wantToReadContainer .valueText")
+    );
+    const readingContainerValueTextElementArr = Array.from(document.querySelectorAll(".readingContainer .valueText"));
+    const readContainerValueTextElementArr = Array.from(document.querySelectorAll(".readContainer .valueText"));
     const wantToReadValueText = Array.from(
         document.querySelectorAll(`main .bookStateDropdownContainer[data-value="wantToRead"]`)
     ).length;
@@ -984,9 +986,17 @@ const updateIndicator = () => {
         document.querySelectorAll(`main .bookStateDropdownContainer[data-value="read"]`)
     ).length;
 
-    wantToReadContainerValueTextElement.innerText = wantToReadValueText;
-    readingContainerValueTextElement.innerText = readingValueText;
-    readContainerValueTextElement.innerText = readValueText;
+    wantToReadContainerValueTextElementArr.forEach((item) => {
+        item.innerText = wantToReadValueText;
+    });
+
+    readingContainerValueTextElementArr.forEach((item) => {
+        item.innerText = readingValueText;
+    });
+
+    readContainerValueTextElementArr.forEach((item) => {
+        item.innerText = readValueText;
+    });
 };
 
 /* ----------------------------------------------------------------------------------------------------------------- */
