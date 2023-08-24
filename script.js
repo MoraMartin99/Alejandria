@@ -768,9 +768,12 @@ const buttonAreaOnInputHandler = (e) => {
 };
 
 const showFilterMenu = (filterMenuElement) => {
-    const ancestorElementCSS = document.querySelector("header").contains(filterMenuElement) ? "header" : "footer";
     hideAllMenuInterfaces();
-    updateAncestorZIndex(filterMenuElement, ancestorElementCSS, 100);
+    if (window.innerWidth >= 1024) {
+        const ancestorElement = filterMenuElement.closest("body > *");
+
+        updateElementZIndex(ancestorElement, 100);
+    }
     addClass(filterMenuElement, ["show"]);
     hideMenuByOutsideClick(filterMenuElement, hideAllMenuInterfaces);
     filterMenuElement.addEventListener("click", filterMenuClickableOptionsHandler);
