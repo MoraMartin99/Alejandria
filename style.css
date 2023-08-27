@@ -1338,15 +1338,21 @@ input::-webkit-inner-spin-button {
         position: relative;
     }
 
-    #githubHeaderIcon {
+    #githubHeaderLink {
         display: block;
         position: absolute;
         width: var(--githubHeaderIconSize);
         height: var(--githubHeaderIconSize);
-        background-image: url("./Img/github.svg");
-        background-size: 100%;
         top: var(--githubHeaderIconTop);
         right: var(--githubHeaderIconRight);
+    }
+
+    .githubHeaderIcon .fills {
+        fill: var(--colorPrimario1);
+    }
+
+    #githubHeaderLink:hover .githubHeaderIcon .fills {
+        fill: var(--colorPrimario1Hover);
     }
 
     .buttonArea {
