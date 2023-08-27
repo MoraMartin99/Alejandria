@@ -63,6 +63,12 @@ html {
     --colorValid2: #cdffcc;
     --colorBase4Opacity: rgb(var(--colorBase4RGBDefinition), 0.85);
     --colorBase3Opacity: rgb(var(--colorBase3RGBDefinition), 0.85);
+    --colorPrimario1Hover: #402215;
+    --colorPrimario1Hover2: #59301d;
+    --colorBase2Hover: #c4a090;
+    --colorInvalid2Hover: #f2c2c2;
+    --colorValid2Hover: #c3f2c2;
+    --colorInvalid1Hover: #bf0000;
 
     /* -------------------------------------------------------- */
 
@@ -468,10 +474,16 @@ header {
     background-color: transparent;
 }
 
+.menuButtonSVGIcon .fills {
+    fill: var(--colorPrimario1);
+}
+
+.menuButton:hover .menuButtonSVGIcon .fills {
+    fill: var(--colorPrimario1Hover);
+}
+
 .addButton {
     grid-area: add;
-    background-image: url("./Img/add.svg");
-    background-size: 100%;
 }
 
 .filterButtonWrapper {
@@ -480,8 +492,6 @@ header {
 }
 
 .filterButton {
-    background-image: url("./Img/filter.svg");
-    background-size: 100%;
     position: relative;
 }
 
@@ -542,14 +552,32 @@ main {
     column-gap: var(--editButtonColumnGap);
     top: var(--editButtonTop);
     right: var(--editButtonRight);
+    align-items: center;
 }
 
-.editButton::before {
+/* .editButton::before {
     content: "";
     background-image: url("/Img/edit.svg");
     background-size: 100%;
     width: var(--editButtonIconSize);
     height: var(--editButtonIconSize);
+} */
+
+.editButtonIcon {
+    width: var(--editButtonIconSize);
+    height: var(--editButtonIconSize);
+}
+
+.editButtonIcon .fills {
+    fill: var(--colorPrimario1);
+}
+
+.editButton:hover {
+    color: var(--colorPrimario1Hover2);
+}
+
+.editButton:hover .editButtonIcon .fills {
+    fill: var(--colorPrimario1Hover2);
 }
 
 .bookCover {
@@ -607,6 +635,10 @@ main {
     padding-inline: var(--dropdownBaseContainerPaddingInLine);
 }
 
+.bookStateDropdownContainer:not(.show) .dropdownBaseContainer:hover {
+    background-color: var(--colorBase2Hover);
+}
+
 .bookStateDropdownContainer[data-value=""] .dropdownBaseContainer {
     grid-template-columns: 1fr max-content;
     justify-items: end;
@@ -662,6 +694,10 @@ main {
     font-size: var(--stateOptionFontSize);
     padding-left: var(--stateOptionColumnGap);
     column-gap: var(--stateOptionColumnGap);
+}
+
+.stateOption:hover {
+    background-color: var(--colorBase2Hover);
 }
 
 .stateOption::before,
@@ -769,22 +805,31 @@ footer {
     font-size: inherit;
 }
 
-#github::before {
-    content: "";
+.githubIcon {
     width: var(--footerGithubIconSize);
     height: var(--footerGithubIconSize);
     font-size: inherit;
-    background-image: url("./Img/github.svg");
-    background-size: 100%;
     position: absolute;
     top: var(--footerGithubIconTop);
     left: var(--footerGithubIconLeft);
+}
+
+.githubIcon .fills {
+    fill: var(--colorPrimario1);
 }
 
 #githubTitle {
     font-size: inherit;
     font-weight: 700;
     color: var(--colorPrimario1);
+}
+
+#github:hover #githubTitle {
+    color: var(--colorPrimario1Hover);
+}
+
+#github:hover .githubIcon .fills {
+    fill: var(--colorPrimario1Hover);
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */
@@ -825,6 +870,11 @@ footer {
     font-weight: 500;
 }
 
+.filterContainer:not(.filterTitleContainer) .filterText:hover,
+.filterCheckbox:hover ~ .filterText {
+    color: var(--colorPrimario1Hover2);
+}
+
 .filterTitleContainer {
     padding-left: 0px;
     justify-content: center;
@@ -842,6 +892,11 @@ footer {
     height: var(--filterCheckboxSize);
     border: var(--filterCheckboxBorderWidth) solid var(--colorPrimario1);
     cursor: pointer;
+}
+
+.filterCheckbox:hover,
+.filterText:hover ~ .filterCheckbox {
+    border-color: var(--colorPrimario1Hover2);
 }
 
 .filterCheckbox + .filterText {
@@ -894,9 +949,17 @@ footer {
     border-color: var(--colorInvalid1);
 }
 
+.cancelButton:hover {
+    background-color: var(--colorInvalid2Hover);
+}
+
 .acceptButton {
     background-color: var(--colorValid2);
     border-color: var(--colorValid1);
+}
+
+.acceptButton:hover {
+    background-color: var(--colorValid2Hover);
 }
 
 .menuWrapper {
@@ -1113,13 +1176,14 @@ input::-webkit-inner-spin-button {
     right: var(--menuDeleteContainerRight);
 }
 
-.menuDeleteContainer::after {
-    content: "";
+.deleteIcon {
     font-size: inherit;
     width: var(--menuDeleteContainerIconSize);
     height: var(--menuDeleteContainerIconSize);
-    background-image: url("./Img/delete.svg");
-    background-size: 100%;
+}
+
+.deleteIcon .fills {
+    fill: var(--colorInvalid1);
 }
 
 .deleteButton {
@@ -1139,6 +1203,18 @@ input::-webkit-inner-spin-button {
     width: var(--deleteButtonUnderlineWidth);
     height: var(--deleteButtonUnderlineHeight);
     background-color: var(--colorInvalid1);
+}
+
+.menuDeleteContainer:hover .deleteButton {
+    color: var(--colorInvalid1Hover);
+}
+
+.menuDeleteContainer:hover .deleteButton::after {
+    background-color: var(--colorInvalid1Hover);
+}
+
+.menuDeleteContainer:hover .deleteIcon .fills {
+    fill: var(--colorInvalid1Hover);
 }
 
 .deleteMenu {
