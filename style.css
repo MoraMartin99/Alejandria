@@ -1486,7 +1486,7 @@ input::-webkit-inner-spin-button {
         /* ------------------------------------------------ */
     }
 
-    #githubHeaderIcon,
+    #githubHeaderLink,
     body > header,
     body > footer,
     body > .buttonArea {
@@ -1561,13 +1561,18 @@ input::-webkit-inner-spin-button {
         column-gap: var(--menuButtonColumnGap);
     }
 
-    .buttonArea > .menuButton::before,
-    .filterButtonWrapper .menuButton::before {
+    .menuButtonSVGIcon {
         width: var(--menuButtonIconSize);
         height: var(--menuButtonIconSize);
-        content: "";
         font-size: inherit;
-        background-size: 100%;
+    }
+
+    .menuButton:hover .buttonText {
+        color: var(--colorPrimario1Hover2);
+    }
+
+    .menuButton:hover .menuButtonSVGIcon .fills {
+        fill: var(--colorPrimario1Hover2);
     }
 
     .filterButtonWrapper {
@@ -1689,6 +1694,14 @@ input::-webkit-inner-spin-button {
 
     #github {
         display: block;
+    }
+
+    #github:hover #githubTitle {
+        color: var(--colorPrimario1Hover2);
+    }
+
+    #github:hover .githubIcon .fills {
+        fill: var(--colorPrimario1Hover2);
     }
 
     /* ---------------------------------------------------- */
