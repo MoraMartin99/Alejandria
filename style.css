@@ -1783,7 +1783,7 @@ input::-webkit-inner-spin-button {
         --buttonAreaRowGap: clamp(15px, -15px + 2.34375vw, 30px);
         --searchContainerColumnGap: clamp(10px, 0px + 0.78125vw, 15px);
         --mainGap: clamp(20px, 0px + 1.5625vw, 30px);
-        --bookEntryMenuColumnGap:clamp(15px, -0.020000000000004903px + 1.1734375000000004vw, 22.51px);
+        --bookEntryMenuColumnGap: clamp(15px, -0.020000000000004903px + 1.1734375000000004vw, 22.51px);
 
         /* ------------------------------------------------ */
 
