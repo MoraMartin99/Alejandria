@@ -131,6 +131,7 @@ const hideAllMenuInterfaces = (exceptionElementArr = undefined) => {
         } else {
             menuWrapperElement.removeEventListener("click", menuWrapperClickHandler);
             menuWrapperElement.removeEventListener("focusout", menuWrapperFocusoutHandler);
+            menuWrapperElement.removeEventListener("input", menuWrapperInputHandler);
             body.style.overflow = "scroll";
 
             bookCardSelectedArr.forEach((item) => {
@@ -469,6 +470,16 @@ const menuWrapperFocusoutHandler = (e) => {
     ) {
         const closestMenuInputBarElement = target.closest(".menuInputBar");
         activateTextInput(closestMenuInputBarElement);
+const menuWrapperInputHandler = (e) => {
+    const target = e.target;
+    const currentTarget = e.currentTarget;
+    let activatedInputElement;
+
+    if (target.matches(".activatedInput, .activatedInput *")) {
+        activatedInputElement = target.closest(".activatedInput");
+
+        inputTestHandler(activatedInputElement);
+        activatedInputElement.checkValidity();
     }
 };
 
@@ -478,6 +489,7 @@ const showBookEntryMenu = (menuWrapperElement) => {
     addClass(menuWrapperElement, ["show"]);
     menuWrapperElement.addEventListener("click", menuWrapperClickHandler);
     menuWrapperElement.addEventListener("focusout", menuWrapperFocusoutHandler);
+    menuWrapperElement.addEventListener("input", menuWrapperInputHandler);
 };
 
 const loadBookEntryMenu = (menuWrapperElement, bookCardElement) => {
