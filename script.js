@@ -441,7 +441,7 @@ const menuWrapperClickHandler = (e) => {
     if (acceptButton.contains(target)) {
         e.preventDefault();
 
-        if (testBookEntryMenuValidity(bookEntryMenuElement)) {
+        if (testBookEntryMenuValidity(bookEntryMenuElement, inputTestHandler)) {
             validBookEntryMenuHandler(bookEntryMenuElement, target);
             resetBookEntryMenuValues(currentTarget);
             hideAllMenuInterfaces();
@@ -470,6 +470,11 @@ const menuWrapperFocusoutHandler = (e) => {
     ) {
         const closestMenuInputBarElement = target.closest(".menuInputBar");
         activateTextInput(closestMenuInputBarElement);
+        inputTestHandler(closestMenuInputBarElement);
+        closestMenuInputBarElement.checkValidity();
+    }
+};
+
 const menuWrapperInputHandler = (e) => {
     const target = e.target;
     const currentTarget = e.currentTarget;
@@ -568,14 +573,48 @@ const activateTextInput = (textInputElement) => {
     addClass(textInputElement, ["activatedInput"]);
 };
 
-const testBookEntryMenuValidity = (bookEntryMenuElement) => {
+const testBookEntryMenuValidity = (bookEntryMenuElement, inputTestHandler = undefined) => {
     const menuInputBarArr = Array.from(bookEntryMenuElement.querySelectorAll(".menuInputBar"));
 
     menuInputBarArr.forEach((input) => {
         activateTextInput(input);
+
+        if (inputTestHandler) {
+            inputTestHandler(input);
+        }
     });
 
-    return bookEntryMenuElement.reportValidity();
+    return bookEntryMenuElement.checkValidity();
+};
+
+const inputTestHandler = (inputElement) => {
+    if (
+        inputElement.matches(
+            "#addMenuTittleInputBar, #addMenuAuthorInputBar, #editMenuTittleInputBar, #editMenuAuthorInputBar"
+        )
+    ) {
+        const value = inputElement.value;
+        const menuIndicationElement = inputElement.closest(".menuInputWrapper").querySelector(".menuIndication");
+        const wordRegex = /\S/;
+        const endSpaceRegex = /^\s+|\s+$/;
+        const middleSpaceRegex = /(?<=\S)\s{2,}(?=\S)/;
+        let errorMessage = "";
+
+        if (wordRegex.test(value)) {
+            if (endSpaceRegex.test(value)) {
+                errorMessage = "Elimine los espacios al inicio o fin del texto";
+            }
+
+            if (middleSpaceRegex.test(value)) {
+                errorMessage = "Separe las palabras solo con 1 espacio";
+            }
+        } else {
+            errorMessage = "Ingrese al menos una palabra";
+        }
+
+        menuIndicationElement.innerText = errorMessage;
+        inputElement.setCustomValidity(errorMessage);
+    }
 };
 
 const validBookEntryMenuHandler = (bookEntryMenuElement) => {
