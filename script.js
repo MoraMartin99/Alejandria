@@ -7,7 +7,7 @@ const menuWrapperArr = Array.from(document.querySelectorAll(".menuWrapper"));
 const buttonAreaArr = Array.from(document.querySelectorAll(".buttonArea"));
 const mobileButtonArea = document.querySelector("body > .buttonArea");
 let hideMenuByOutsideClickHandler;
-const user = { bookArr: [], currentSet: { restrictionArr: [], bookArr: [] } };
+const user = { bookArr: [], restrictionArr: [] };
 /* ----------------------------------------------------------------------------------------------------------------- */
 
 /* Funciones generales */
@@ -853,7 +853,7 @@ const loadFilterMenu = (filterMenuElement) => {
     const readCheckboxElement = filterMenuElement.querySelector(".filterReadContainer .filterCheckbox");
     const readingCheckboxElement = filterMenuElement.querySelector(".filterReadingContainer .filterCheckbox");
     const type = "filter";
-    const restrictionObj = user.currentSet.restrictionArr.find((obj) => {
+    const restrictionObj = user.restrictionArr.find((obj) => {
         return obj.type === type;
     });
     let wantToReadValue;
@@ -973,7 +973,7 @@ const getFilterRestrictionObj = (filterMenuElement) => {
 const setFilterRestrictionObj = (filterMenuElement) => {
     const type = "filter";
     const filterButtonArr = Array.from(document.querySelectorAll(".filterButton"));
-    const destinationArr = user.currentSet.restrictionArr;
+    const destinationArr = user.restrictionArr;
     const restrictionObj = getFilterRestrictionObj(filterMenuElement);
     const isAllChecked = restrictionObj.testArr.every((item) => {
         return item.value;
@@ -1003,7 +1003,7 @@ const getSearchQueryRestrictionObj = (searchBarElement) => {
 
 const setSearchQueryRestrictionObj = (searchBarElement) => {
     const type = "searchQuery";
-    const destinationArr = user.currentSet.restrictionArr;
+    const destinationArr = user.restrictionArr;
     const restrictionObj = getSearchQueryRestrictionObj(searchBarElement);
     const isNotEmpty = restrictionObj.testArr[0].searchQuery.length;
 
