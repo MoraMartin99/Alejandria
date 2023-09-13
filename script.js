@@ -185,6 +185,7 @@ const setRestriction = (restrictionObj, destinationArr) => {
     }
 
     destinationArr.push(restrictionObj);
+    rebuildAllBookCardElement(user);
 };
 
 const deleteRestriction = (type, destinationArr) => {
@@ -195,6 +196,29 @@ const deleteRestriction = (type, destinationArr) => {
     if (index !== -1) {
         destinationArr.splice(index, 1);
     }
+    rebuildAllBookCardElement(user);
+};
+
+const rebuildAllBookCardElement = (userObj) => {
+    const bookObjArr = userObj.bookArr;
+    const restrictionArr = userObj.restrictionArr;
+    const restrictedBookObjArr = bookObjArr.filter((bookObj) => {
+        let isValid = true;
+
+        if (restrictionArr.length) {
+            isValid = restrictionArr.every((restrictionObj) => {
+                const testArr = restrictionObj.testArr;
+                const testHandler = restrictionObj.testHandler;
+
+                return testHandler(bookObj, testArr);
+            });
+        }
+
+        return isValid;
+    });
+
+    main.replaceChildren();
+    addBookCardElement(main, restrictedBookObjArr);
 };
 
 /* ----------------------------------------------------------------------------------------------------------------- */
@@ -336,6 +360,7 @@ const bookCardDropDownMenuHandler = (target) => {
         removeClass(bookStateDropdownContainer, ["show"]);
         updateBookCard(bookStateDropdownContainer);
         bookObj.state = dataValue;
+        rebuildAllBookCardElement(user);
     }
 };
 
@@ -630,6 +655,7 @@ const validBookEntryMenuHandler = (bookEntryMenuElement) => {
         rebuildBookCardElement(bookCardSelectedElement);
         bookStateDropdownContainerElement = bookCardSelectedElement.querySelector(".bookStateDropdownContainer");
         updateBookCard(bookStateDropdownContainerElement);
+        rebuildAllBookCardElement(user);
     }
 };
 
