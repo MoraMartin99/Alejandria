@@ -746,7 +746,7 @@ const editBookCardObj = (bookEntryMenuElement, destinationArr, bookCardID) => {
     const author = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(4) .menuInputBar").value;
     const nPages = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(3) .menuInputBar").value;
     const state = bookEntryMenuElement.querySelector(".menuInputContainer:nth-last-child(2) .menuInputBar").value;
-    const bookObj = user.bookArr.find((item) => {
+    const bookObj = destinationArr.find((item) => {
         return item.id === bookCardID;
     });
 
