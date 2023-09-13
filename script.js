@@ -840,6 +840,7 @@ const buttonAreaClickHandler = (e) => {
 
     if (searchDeleteIconElement.contains(target)) {
         searchBarElement.value = "";
+        setSearchQueryRestrictionObj(searchBarElement);
         removeClass(searchDeleteIconElement, ["activated"]);
         searchBarElement.focus();
         return;
