@@ -721,21 +721,23 @@ const addBookCardObj = (bookEntryMenuElement, destinationArr) => {
 };
 
 const addBookCardElement = (parentElement, bookCardObjArr, index = undefined) => {
-    let childElement;
-    let bookStateDropdownContainerElement;
+    if (bookCardObjArr.length) {
+        let childElement;
+        let bookStateDropdownContainerElement;
 
-    if (index) {
-        childElement = getBookCardElement(bookCardObjArr[index]);
-        bookStateDropdownContainerElement = childElement.querySelector(".bookStateDropdownContainer");
-        parentElement.appendChild(childElement);
-        updateBookCard(bookStateDropdownContainerElement);
-    } else {
-        bookCardObjArr.forEach((obj) => {
-            childElement = getBookCardElement(obj);
+        if (index) {
+            childElement = getBookCardElement(bookCardObjArr[index]);
             bookStateDropdownContainerElement = childElement.querySelector(".bookStateDropdownContainer");
             parentElement.appendChild(childElement);
             updateBookCard(bookStateDropdownContainerElement);
-        });
+        } else {
+            bookCardObjArr.forEach((obj) => {
+                childElement = getBookCardElement(obj);
+                bookStateDropdownContainerElement = childElement.querySelector(".bookStateDropdownContainer");
+                parentElement.appendChild(childElement);
+                updateBookCard(bookStateDropdownContainerElement);
+            });
+        }
     }
 };
 
