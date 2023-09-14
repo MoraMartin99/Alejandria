@@ -1052,7 +1052,11 @@ const setFilterRestrictionObj = (filterMenuElement) => {
     }
 };
 
-const filterTestHandler = () => {};
+const filterTestHandler = (bookObj, testArr) => {
+    return testArr.some((item) => {
+        return item.filter === bookObj.state && item.value;
+    });
+};
 
 const getSearchQueryRestrictionObj = (searchBarElement) => {
     const searchText = searchBarElement.value;
@@ -1074,7 +1078,14 @@ const setSearchQueryRestrictionObj = (searchBarElement) => {
     }
 };
 
-const searchQueryTestHandler = () => {};
+const searchQueryTestHandler = (bookObj, testArr) => {
+    const regex = new RegExp(testArr[0].searchQuery, "i");
+    const searchableStringArr = [bookObj.title, bookObj.author];
+
+    return searchableStringArr.some((string) => {
+        return regex.test(string);
+    });
+};
 
 const setPinnedState = (element, windowWidth) => {
     const options = { root: null, rootMargin: "0px", threshold: 1 };
