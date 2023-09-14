@@ -216,9 +216,40 @@ const rebuildAllBookCardElement = (userObj) => {
 
         return isValid;
     });
+    const restrictedBookObjIDArr = restrictedBookObjArr.map((bookObj) => {
+        return bookObj.id;
+    });
+    const currentBookCardElementArr = Array.from(document.querySelectorAll("main .bookCard"));
+    const currentBookCardElementIDArr = currentBookCardElementArr.map((bookCardElement) => {
+        return bookCardElement.id;
+    });
 
-    main.replaceChildren();
-    addBookCardElement(main, restrictedBookObjArr);
+    /* Eliminamos los elementos que no están incluidos en restrictedBookObjArr */
+    currentBookCardElementArr.forEach((bookCardElement) => {
+        if (!restrictedBookObjIDArr.includes(bookCardElement.id)) {
+            bookCardElement.remove();
+        }
+    });
+
+    /* Agregamos los elementos pendientes en el orden adecuado */
+    restrictedBookObjArr.forEach((bookObj, index) => {
+        const id = bookObj.id;
+        if (!currentBookCardElementIDArr.includes(id)) {
+            const childElement = getBookCardElement(bookObj);
+            const bookStateDropdownContainerElement = childElement.querySelector(".bookStateDropdownContainer");
+
+            if (index === 0) {
+                main.prepend(childElement);
+            } else {
+                const lastID = restrictedBookObjArr[index - 1].id;
+                const lastSiblingElement = main.querySelector(`#${lastID}`);
+
+                lastSiblingElement.after(childElement);
+            }
+
+            updateBookCard(bookStateDropdownContainerElement);
+        }
+    });
 };
 
 /* ----------------------------------------------------------------------------------------------------------------- */
