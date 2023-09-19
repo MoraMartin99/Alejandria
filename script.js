@@ -391,8 +391,8 @@ const bookCardDropDownMenuHandler = (target) => {
         body.removeEventListener("click", hideMenuByOutsideClickHandler);
         bookStateDropdownContainer.setAttribute("data-value", dataValue);
         removeClass(bookStateDropdownContainer, ["show"]);
-        updateBookCard(bookStateDropdownContainer);
         bookObj.state = dataValue;
+        updateBookCard(bookStateDropdownContainer);
         rebuildAllBookCardElement(user);
     }
 };
@@ -1130,31 +1130,29 @@ const setPinnedState = (element, windowWidth) => {
 /* ----------------------------------------------------------------------------------------------------------------- */
 
 const updateIndicator = () => {
+    const stateObj = user.bookArr.reduce(
+        (resultObj, bookCardObj) => {
+            resultObj[`${bookCardObj.state}`]++;
+            return resultObj;
+        },
+        { wantToRead: 0, reading: 0, read: 0 }
+    );
     const wantToReadContainerValueTextElementArr = Array.from(
         document.querySelectorAll(".wantToReadContainer .valueText")
     );
     const readingContainerValueTextElementArr = Array.from(document.querySelectorAll(".readingContainer .valueText"));
     const readContainerValueTextElementArr = Array.from(document.querySelectorAll(".readContainer .valueText"));
-    const wantToReadValueText = Array.from(
-        document.querySelectorAll(`main .bookStateDropdownContainer[data-value="wantToRead"]`)
-    ).length;
-    const readingValueText = Array.from(
-        document.querySelectorAll(`main .bookStateDropdownContainer[data-value="reading"]`)
-    ).length;
-    const readValueText = Array.from(
-        document.querySelectorAll(`main .bookStateDropdownContainer[data-value="read"]`)
-    ).length;
 
     wantToReadContainerValueTextElementArr.forEach((item) => {
-        item.innerText = wantToReadValueText;
+        item.innerText = stateObj.wantToRead;
     });
 
     readingContainerValueTextElementArr.forEach((item) => {
-        item.innerText = readingValueText;
+        item.innerText = stateObj.reading;
     });
 
     readContainerValueTextElementArr.forEach((item) => {
-        item.innerText = readValueText;
+        item.innerText = stateObj.read;
     });
 };
 
