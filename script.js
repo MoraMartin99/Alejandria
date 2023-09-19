@@ -374,6 +374,7 @@ const bookCardDropDownMenuHandler = (target) => {
     const bookObj = user.bookArr.find((item) => {
         return item.id === id;
     });
+    const restrictionArr = user.restrictionArr;
 
     /* Activación del menu */
     if (activationElement.contains(target) && !activationElement.classList.contains("show")) {
@@ -393,7 +394,10 @@ const bookCardDropDownMenuHandler = (target) => {
         removeClass(bookStateDropdownContainer, ["show"]);
         bookObj.state = dataValue;
         updateBookCard(bookStateDropdownContainer);
-        rebuildAllBookCardElement(user);
+
+        if (restrictionArr.length) {
+            rebuildAllBookCardElement(user);
+        }
     }
 };
 
@@ -695,6 +699,7 @@ const inputTestHandler = (inputElement) => {
 const validBookEntryMenuHandler = (bookEntryMenuElement) => {
     const bookArr = user.bookArr;
     const bookCardSelectedElement = document.querySelector(".bookCard.selected");
+    const restrictionArr = user.restrictionArr;
     let bookStateDropdownContainerElement;
 
     if (bookEntryMenuElement.matches("#addMenu")) {
@@ -705,6 +710,9 @@ const validBookEntryMenuHandler = (bookEntryMenuElement) => {
         rebuildBookCardElement(bookCardSelectedElement);
         bookStateDropdownContainerElement = bookCardSelectedElement.querySelector(".bookStateDropdownContainer");
         updateBookCard(bookStateDropdownContainerElement);
+    }
+
+    if (restrictionArr.length) {
         rebuildAllBookCardElement(user);
     }
 };
