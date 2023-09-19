@@ -109,6 +109,7 @@ html {
     --deleteMenuBorderWidth: calc(1em * (1 / 15));
     --searchDeleteIconSize: calc(var(--menuButtonSize) * 0.5);
     --filterNotificationIconSize: calc(100% * (12.5 / 30));
+    --noResultIconSize: calc(1em * (61 / 20));
 
     /* -------------------------------------------------------- */
 
@@ -126,6 +127,7 @@ html {
     --menuIndicationFontSize: calc(1em * (12 / 15));
     --stateOptionFontSize: calc(1em * (14 / 15));
     --deleteMenuFontSize: var(--bookEntryMenuFontSize);
+    --noResultFontSize: clamp(1.25rem, 0.044642857142857206rem + 6.0267857142857135vw, 2.9375rem);
 
     /* -------------------------------------------------------- */
 
@@ -177,6 +179,7 @@ html {
     --menuDeleteContainerColumnGap: calc(1em * (2 / 15));
     --deleteButtonRowGap: calc(1em * (1.5 / 15));
     --deleteMenuColumnGap: calc(1em * (10 / 15));
+    --noResultRowGap: calc(1em * (10 / 20));
 
     /* -------------------------------------------------------- */
 
@@ -523,6 +526,31 @@ main {
     grid-template-columns: repeat(auto-fill, minmax(var(--bookCardBaseWidth), 1fr));
     grid-auto-rows: max-content;
     gap: var(--mainGap);
+    position: relative;
+}
+
+.noResult {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--noResultFontSize);
+    font-weight: 500;
+    color: var(--colorPrimario3);
+    row-gap: var(--noResultRowGap);
+    white-space: nowrap;
+}
+
+.noResult::after {
+    content: "";
+    font-size: inherit;
+    width: var(--noResultIconSize);
+    height: var(--noResultIconSize);
+    background-image: url("./Img/sad.svg");
+    background-size: 100%;
 }
 
 .bookCard {
@@ -1285,6 +1313,7 @@ input::-webkit-inner-spin-button {
             2.009166666875rem
         );
         --filterMenuFontSize: clamp(1.40625rem, 0rem + 2.9296875vw, 1.875rem);
+        --noResultFontSize: clamp(2.9375rem, -0.00006250000000029843rem + 6.119921875000001vw, 3.9166875rem);
 
         /* ------------------------------------------------ */
 
@@ -1412,6 +1441,7 @@ input::-webkit-inner-spin-button {
         --valueTextFontSize: calc(1em * (35 / 26));
         --filterMenuFontSize: 1.25rem;
         --bookEntryMenuFontSize: 1.339375rem;
+        --noResultFontSize: 2.75rem;
 
         /* ------------------------------------------------ */
 
@@ -1773,6 +1803,7 @@ input::-webkit-inner-spin-button {
         --githubTitleFontSize: clamp(1.6875rem, -0.33750000000000036rem + 2.5312500000000004vw, 2.7rem);
         --bookEntryMenuFontSize: clamp(1.339375rem, 0.0006249999999998757rem + 1.6734375000000004vw, 2.00875rem);
         --filterMenuFontSize: clamp(1.25rem, 0.0006249999999998757rem + 1.5617187500000003vw, 1.8746875rem);
+        --noResultFontSize: clamp(2.75rem, -0.9375rem + 4.609375vw, 4.59375rem);
 
         /* ------------------------------------------------ */
 

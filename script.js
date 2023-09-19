@@ -250,6 +250,8 @@ const rebuildAllBookCardElement = (userObj) => {
             updateBookCard(bookStateDropdownContainerElement);
         }
     });
+
+    toggleNoResult(main);
 };
 
 /* ----------------------------------------------------------------------------------------------------------------- */
@@ -422,6 +424,23 @@ const updateBookCard = (DropDownMenuElement) => {
     } else {
         updateAncestorZIndex(DropDownMenuElement, ancestorCSSSelector, "auto");
         updateIndicator();
+    }
+};
+
+const toggleNoResult = (parentElement) => {
+    const targetElement = parentElement.querySelector(".noResult");
+    const childrenArr = Array.from(parentElement.querySelectorAll(".bookCard"));
+    const restrictionArr = user.restrictionArr;
+
+    if (!restrictionArr.length) {
+        targetElement.classList.add("hide");
+        return;
+    }
+
+    if (childrenArr.length) {
+        targetElement.classList.add("hide");
+    } else {
+        targetElement.classList.remove("hide");
     }
 };
 
@@ -769,6 +788,8 @@ const addBookCardElement = (parentElement, bookCardObjArr, index = undefined) =>
                 updateBookCard(bookStateDropdownContainerElement);
             });
         }
+
+        toggleNoResult(main);
     }
 };
 
