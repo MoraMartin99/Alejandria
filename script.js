@@ -132,7 +132,7 @@ const hideAllMenuInterfaces = (exceptionElementArr = undefined) => {
             menuWrapperElement.removeEventListener("click", menuWrapperClickHandler);
             menuWrapperElement.removeEventListener("focusout", menuWrapperFocusoutHandler);
             menuWrapperElement.removeEventListener("input", menuWrapperInputHandler);
-            body.style.overflow = "scroll";
+            body.style.removeProperty("overflow");
 
             bookCardSelectedArr.forEach((item) => {
                 removeClass(item, ["selected"]);

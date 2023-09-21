@@ -248,7 +248,7 @@ body {
         "main"
         "footer";
     position: relative;
-    overflow: scroll;
+    overflow: auto;
 }
 
 button {
@@ -1453,7 +1453,7 @@ input::-webkit-inner-spin-button {
         --menuButtonSize: 1.875rem;
         --searchBarBorderWidth: 1.041px;
         --menuButtonIconSize: var(--menuButtonSize);
-        --bookCardBaseWidth: 19.5rem;
+        --bookCardBaseWidth: 18.5625rem;
         --asideWidth: calc(var(--searchBarWidth) + var(--buttonAreaPaddingInline) * 2);
         --indicatorContainerWidth: 0px;
         --fieldContainerIconSize: calc(1em * (23 / 26));
@@ -1527,8 +1527,18 @@ input::-webkit-inner-spin-button {
         grid-template-columns: var(--asideWidth) 1fr;
         grid-template-rows: 1fr;
         grid-template-areas: ". main";
+        overflow: hidden;
     }
     /* ---------------------------------------------------- */
+
+    /* main */
+    /* ---------------------------------------------------- */
+
+    main {
+        overflow: auto;
+        height: 100vh;
+        scrollbar-gutter: stable both-edges;
+    }
 
     /* aside */
     /* ---------------------------------------------------- */
@@ -1788,7 +1798,7 @@ input::-webkit-inner-spin-button {
         --searchBarWidth: clamp(280px, 0rem + 21.875vw, 420px);
         --menuButtonSize: clamp(1.875rem, 0rem + 2.34375vw, 2.8125rem);
         --searchBarBorderWidth: clamp(1.041px, -0.001px + 0.08140625000000003vw, 1.562px);
-        --bookCardBaseWidth: clamp(17.916875rem, 1.250625000000003rem + 20.832812499999996vw, 26.25rem);
+        --bookCardBaseWidth: clamp(17.291666666666668rem, 0.6250000000000036rem + 20.833333333333332vw, 25.625rem);
         --footerMinHeight: clamp(6.25rem, -1.25rem + 9.375vw, 10rem);
 
         /* ------------------------------------------------ */
