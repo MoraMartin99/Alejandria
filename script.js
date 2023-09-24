@@ -630,9 +630,15 @@ const deleteWrapperClickHandler = (e) => {
 };
 
 const deleteBookCard = (bookCardElement) => {
+    const restrictionArr = user.restrictionArr;
+
     removeBookObjArr([bookCardElement.id], user.bookArr);
     removeElement([bookCardElement]);
     updateIndicator();
+
+    if (restrictionArr.length) {
+        rebuildAllBookCardElement(user);
+    }
 };
 
 const resetBookEntryMenuValues = (bookEntryMenuElement) => {
